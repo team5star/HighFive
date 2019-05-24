@@ -16,4 +16,4 @@ This repository is licensed under the terms of [MIT](LICENSE.md) License file in
 * **Moazzam Hameed Paracha** ([@Moz125](https://github.com/Moz125))
 * **Majid Khan Burki** ([@MajidKhanBurki](https://github.com/MajidKhanBurki))
 * **Mubariz Shuaib** ([@Mbrzzz](https://github.com/Mbrzzz))
-* **Muhammad Ali Jaffery** ([@Alijaffery5](https://github.com/Alijaffery125))
+* **Muhammad Ali Jaffery** ([@Alijaffery5](https://github.com/Alijaffery5))
