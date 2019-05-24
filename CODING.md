@@ -43,6 +43,6 @@ foreach ($users as $user) {
 * **Class Names** MUST be lowercase with every word starting with an uppercase alphabet. **No spaces in class names.**
 * **CONSTANTS** MUST all be uppercase and words MUST be separated by underscore.
 * **Operators** MUST be surrounded by a space.
-* **Unary Operaators** MUST be attacked to their variable or integer.
+* **Unary Operators** MUST be attacked to their variable or integer.
 * **Concatenation Period** MUST be surrounded by a space.
 * **Single Quotes** MUST be used unless you're evaluating something in a string.
