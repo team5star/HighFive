@@ -7,6 +7,24 @@ It allows its users to:
 * create and manage groups
 * post in groups
 * chat privately with their friends
+## Deployment
+Move to your *htdocs* folder and execute following command: 
+```bash
+git clone https://github.com/team5star/highfive.git
+```
+Import `db-structure-dbhighfive.sql` to MySQL using phpmyadmin.
+Now, move to `config` folder inside `highfive`.
+Create a file named `database.php`
+In `database.php` put the database credentials like this:
+```php
+<?php
+$DB_HOST = "localhost";
+$DB_NAME = "dbhighfive";
+$DB_USER = "root";
+$DB_PASSWORD = "<your_password_here>";
+?>
+```
+
 ## Coding Convention
 All code must comply with coding convention specified in [CODING.md](CODING.md) file.
 ## License
