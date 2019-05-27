@@ -27,6 +27,11 @@ class Database
      */
     public function __construct()
     {
+        global $DB_HOST,
+        $DB_NAME,
+        $DB_PASSWORD,
+        $DB_USER;
+        
         try {
             $this->db_connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASSWORD);
         } catch (PDOException $ex) {
@@ -38,7 +43,7 @@ class Database
      *
      * @return PDO Returns the active PDO
      */
-    public function getconnection()
+    public function get_connection()
     {
         return $this->db_connection;
     }
