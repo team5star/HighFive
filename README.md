@@ -12,8 +12,3 @@ All code must comply with coding convention specified in [CODING.md](CODING.md) 
 ## License
 This repository is licensed under the terms of [MIT](LICENSE.md) License file included in this repository.
 ## Contributors
-* **Muhammad Tayyab Sheikh** ([@cstayyab](https://github.com/cstayyab))
-* **Moazzam Hameed Paracha** ([@Moz125](https://github.com/Moz125))
-* **Majid Khan Burki** ([@MajidKhanBurki](https://github.com/MajidKhanBurki))
-* **Mubariz Shuaib** ([@Mbrzzz](https://github.com/Mbrzzz))
-* **Muhammad Ali Jaffery** ([@Alijaffery5](https://github.com/Alijaffery5))
