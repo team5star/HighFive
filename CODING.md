@@ -85,7 +85,7 @@ var someItem = 'some string',
     anotherItem = 'another string',
     oneMoreItem = 'one more string';
 ```
-* **ALAWAYS, FOR THE LOVE OF ALL THAT IS GOOD, ALWAYS USE SEMICOLONS**.
+* **ALWAYS, FOR THE LOVE OF ALL THAT IS GOOD, ALWAYS USE SEMICOLONS**.
 * To make a function run automatically when a page loads, or a parent function is called use the following syntax:-
 ```javascript
 (function doSomething() {
