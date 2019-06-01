@@ -13,6 +13,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "cstayyab",
+      "name": "Muhammad Tayyab Sheikh",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/29598866?v=4",
+      "profile": "https://cstayyab.github.io",
+      "contributions": [
+        "review",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
