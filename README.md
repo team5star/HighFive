@@ -1,5 +1,6 @@
 # HighFive
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+
 HighFive is a very simple social network coded in PHP Core, HTML, JavaScript (and its frameworks) and CSS (Bootstrap). 
 ## Features
 It allows its users to:
