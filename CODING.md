@@ -54,7 +54,7 @@ foreach ($users as $user) {
 * The use of short hand is not allowed.
 * Highly Prioratize Script must be placement at the bottom of the page.
 * Try to keep variable decleration **outside** of for-loops as much as possible. For example:-
-```
+```javascript
 var container = document.getElementById('container');
 for(var i = 0, len = someArray.length; i < len;  i++) {
    container.innerHtml += 'my number: ' + i;
@@ -70,24 +70,24 @@ for(var i = 0, len = someArray.length; i < len;  i++) {
 * **Variables and Function Names** MUST be declared lowercase and words MUST be separated by an underscore.
 * **Class Names** MUST be lowercase with every word starting with an uppercase alphabet. **No spaces in class names.**
 * **CONSTANTS** MUST all be uppercase and words MUST be separated by underscore. Also constants must be defined as follows:-
-```
+```javascript
 const NUMERIC_CONSTANT = 42;
 ```
 * **Operators** MUST be surrounded by a space.
 * For new oBject creation, use the following code syntax:-
-```
+```javascript
 var new_obj = {....};
 ```
 * Use **[]** Instead of **New Array()** for array creation.
 * Incase of long list of variables use the following syntax
-```
+```javascript
 var someItem = 'some string',
     anotherItem = 'another string',
     oneMoreItem = 'one more string';
 ```
 * **ALAWAYS, FOR THE LOVE OF ALL THAT IS GOOD, ALWAYS USE SEMICOLONS**.
 * To make a function run automatically when a page loads, or a parent function is called use the following syntax:-
-```
+```javascript
 (function doSomething() {
    return {
       name: 'jeff',
