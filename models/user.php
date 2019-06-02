@@ -14,25 +14,6 @@ class User
     private $tbl = "users";
     private $db = null;
 
-    public function __construct($user = null)
-    {
-        $this->db = (new Database())->get_connection();
-    }
-    public function __get($prop)
-    {
-        if (array_key_exists($prop, $this->user)) {
-            return $this->user[$prop];
-        } else {
-            $trace = debug_backtrace();
-            trigger_error(
-                'Undefined property via __get(): ' . $prop .
-                    ' in ' . $trace[0]['file'] .
-                    ' on line ' . $trace[0]['line'],
-                E_USER_NOTICE
-            );
-            return null;
-        }
-    }
     /**
      * Selects all the rows in the users tables.
      * 
@@ -71,6 +52,10 @@ class User
     /**
      * Inserts a record in to user table
      * 
+     * @todo change it according to https://stackoverflow.com/a/37591506/7337013
+     * 
+     * @todo By Moz125: Don't add uid and timestamp column while inserting
+     * 
      * @param mixed[] $vals Associative array containing keys as column names
      * 
      * @return boolean Returns if the operation was successful or not
@@ -80,7 +65,14 @@ class User
         $fields = array_keys($vals);
         $values = array_values($vals);
         $fieldlist = implode(',', $fields);
-        $qs = str_repeat("?,", count($fields) - 1);
+
+        /* Fixed by @Moz125 */
+        for($x = 0; $x < count($values); $x++){
+            $values[$x] = "'{$values[$x]}'";
+        }
+        $qs = implode(", ", $values);
+        /* end of fix */
+
         $sql = "insert into `$this->tbl`($fieldlist) values(${qs}?)";
         $q = $this->db->prepare($sql);
         return $q->execute($values);
