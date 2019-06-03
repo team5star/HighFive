@@ -1,1 +1,3 @@
 dist
+config/database.php
+views/*_test.php
