@@ -1,5 +1,5 @@
 # HighFive
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 HighFive is a very simple social network coded in PHP Core, HTML, JavaScript (and its frameworks) and CSS (Bootstrap). 
 ## Features
