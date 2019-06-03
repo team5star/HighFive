@@ -1,5 +1,5 @@
 # HighFive
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Top Language](https://img.shields.io/github/languages/top/team5star/HighFive.svg?style=plastic)](#) [![Languages](https://img.shields.io/github/languages/count/team5star/HighFive.svg?style=plastic)](#)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Top Language](https://img.shields.io/github/languages/top/team5star/HighFive.svg?style=plastic)](#highfive) [![Languages](https://img.shields.io/github/languages/count/team5star/HighFive.svg?style=plastic)](#highfive)
 
 HighFive is a very simple social network coded in PHP Core, HTML, JavaScript (and its frameworks) and CSS (Bootstrap). 
 ## Features
