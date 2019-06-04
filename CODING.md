@@ -98,4 +98,87 @@ var someItem = 'some string',
 * Always end switch statements with a default.
 
 
+# Coding Conventions for HTML/CSS Source Files
 
+* Always declare the document type as the first line in your document:
+```
+<!DOCTYPE html>
+```
+
+* Use Lower Case Element Names:
+```
+==> BAD <==
+<Section> 
+  <p>This is a paragraph.</p>
+</SECTION>
+
+==> GOOD <==
+<section> 
+  <p>This is a paragraph.</p>
+</section>
+```
+
+* Close All HTML Elements.
+* Close Empty HTML Elements
+```
+<meta charset="utf-8" />
+```
+
+* Use Lower Case Attribute Names
+```
+<div class="menu">
+```
+
+* Quote Attribute Values
+
+```
+==> BAD <==
+<table class=striped>
+
+==> GOOD <===
+<table class="striped">
+```
+
+* Always add the alt attribute to images.
+* Don't use spaces around equal signs
+```
+<link rel="stylesheet" href="styles.css">
+```
+
+* Try to avoid code lines longer than 80 characters.
+* The '<title>' element is required.
+* Include the following <meta> viewport element in all your web pages:
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+* Short comments should be written on one line, like this:
+```
+<!-- This is a comment -->
+```
+
+* Comments that spans more than one line, should be written like this:
+```
+<!-- 
+  This is a long comment example. This is a long comment example.
+  This is a long comment example. This is a long comment example.
+-->
+```
+
+* Short rules can be written compressed, like this in the Style:
+```
+p.intro {font-family: Verdana; font-size: 16em;}
+```
+
+* Long rules should be written over multiple lines:
+```
+body {
+  background-color: lightgrey;
+  font-family: "Arial Black", Helvetica, sans-serif;
+  font-size: 16em;
+  color: black;
+}
+```
+
+* * **Line Indentation** must be implemented using Spaces **(1 tab = 4 spaces)**.
+* **ID and Class** names should be lower-case, and  MUST be separated by an underscore.
+* **ID** must only be used for unique tag access, while classes should be used for general tag selection.
