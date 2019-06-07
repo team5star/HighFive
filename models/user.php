@@ -12,6 +12,7 @@ class User
      * @todo Implement Cached functionality to reduce response time
      */
     private $tbl = "users";
+    private $primary = "uid";
     private $db = null;
 
     /**
@@ -33,7 +34,7 @@ class User
      */
     public function select_by_uid($uid)
     {
-        $query = "SELECT * FROM `$this->tbl` WHERE uid=$uid";
+        $query = "SELECT * FROM `$this->tbl` WHERE $this->primary=$uid";
         return $this->db->query($query, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
     }
     /**
@@ -45,7 +46,7 @@ class User
      */
     public function delete_user($uid)
     {
-        $query = "DELETE FROM `$this->tbl` WHERE uid=$uid";
+        $query = "DELETE FROM `$this->tbl` WHERE $this->primary=$uid";
         return $this->db->exec($query) > 0;
     }
 
