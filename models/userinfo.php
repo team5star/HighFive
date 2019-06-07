@@ -16,9 +16,9 @@ class UserInfo
     private $db = null;
 
     /**
-     * Selects all the rows in the usersInfo tables.
+     * Selects all the rows in the table.
      * 
-     * @returns mixed[][]|null Returns array of all the columns
+     * @returns mixed[][]|null Returns array of all the rows
      */
     public function select_all()
     {
@@ -26,25 +26,25 @@ class UserInfo
         return $this->db->query($query, PDO::FETCH_ASSOC)->fetchAll(PDO::FETCH_ASSOC);
     }
     /** 
-     * Selects user by uid
+     * Selects record by uid
      * 
-     * @param integer $id The ufid of user to be fetched
+     * @param integer $id The primary id of the record to be fetched
      * 
      * @returns mixed[]|null Return the row required in form of an associated array
      */
-    public function select_by_uid($id)
+    public function select_by_id($id)
     {
         $query = "SELECT * FROM `$this->tbl` WHERE $this->primary=$id";
         return $this->db->query($query, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
     }
     /**
-     * Delete user by uid (primary key)
+     * Delete record by uid (primary key)
      * 
-     * @param integer $id The primary key of record to be fetched
+     * @param integer $id The primary key of record to be deleted
      * 
      * @returns boolean Return if the operation was successful or not
      */
-    public function delete_user($uid)
+    public function delete($id)
     {
         $query = "DELETE FROM `$this->tbl` WHERE $this->primary=$id";
         return $this->db->exec($query) > 0;
@@ -61,7 +61,7 @@ class UserInfo
      * 
      * @return boolean Returns if the operation was successful or not
      */
-    public function insert_user($vals)
+    public function insert($vals)
     {
         $fields = array_keys($vals);
         $values = array_values($vals);
@@ -91,7 +91,7 @@ class UserInfo
      * 
      * @return boolean Returns if the operation was successful or not
      */
-    public function update_user($vals, $id)
+    public function update($vals, $id)
     {
         $fields = array_keys($vals);
         $fieldlist = "";
