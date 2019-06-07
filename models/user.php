@@ -78,4 +78,32 @@ class User
         $q = $this->db->prepare($sql);
         return $q->execute($values);
     }
+
+    /**
+     * Update a record in to user table
+     * 
+     * @todo change it according to https://stackoverflow.com/a/37591506/7337013
+     * 
+     * @todo Don't add uid and timestamp column while updating
+     * 
+     * @param mixed[] $vals Associative array containing keys as column names
+     * @param integer $id User ID to update user Info
+     * 
+     * @return boolean Returns if the operation was successful or not
+     */
+    public function update_user($vals, $id)
+    {
+        $fields = array_keys($vals);
+        $fieldlist = "";
+        for($i=0;$i<count($fields); $i++) {
+            $field = $fields[$i];
+            $fieldlist .= "`$field`=:$field";
+            if($i+ 1 != count($fields)) {
+                $fieldlist .= ", ";
+            }
+        }
+        $sql = "UPDATE `$this->tbl` SET $fieldlist WHERE `$this->primary` = $id";
+        $q = $this->db->prepare($sql);
+        return $q->execute($vals);
+    }
 }
