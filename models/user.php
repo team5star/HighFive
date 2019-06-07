@@ -4,7 +4,7 @@ require_once __DIR__ . "/../config/connection.php";
 /**
  * Perfoms the CRUD operation on Users Table.
  * 
- * This class includes all the CRUD operations including other minor operation like get_user_by_uid etc.
+ * This class includes all the CRUD operations including other minor operation.
  */
 class User
 {
@@ -16,9 +16,9 @@ class User
     private $db = null;
 
     /**
-     * Selects all the rows in the users tables.
+     * Selects all the rows in the table.
      * 
-     * @returns mixed[][]|null Returns array of all the columns
+     * @returns mixed[][]|null Returns array of all the rows
      */
     public function select_all()
     {
@@ -26,42 +26,42 @@ class User
         return $this->db->query($query, PDO::FETCH_ASSOC)->fetchAll(PDO::FETCH_ASSOC);
     }
     /** 
-     * Selects user by uid
+     * Selects record by uid
      * 
-     * @param integer $uid The uid of user to be fetched
+     * @param integer $id The primary id of the record to be fetched
      * 
-     * @returns mixed[]|null Return the user column required in form of an associated array
+     * @returns mixed[]|null Return the row required in form of an associated array
      */
-    public function select_by_uid($uid)
+    public function select_by_id($id)
     {
-        $query = "SELECT * FROM `$this->tbl` WHERE $this->primary=$uid";
+        $query = "SELECT * FROM `$this->tbl` WHERE $this->primary=$id";
         return $this->db->query($query, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC);
     }
     /**
-     * Delete user by uid (primary key)
+     * Delete record by uid (primary key)
      * 
-     * @param integer $uid The uid of user to be fetched
+     * @param integer $id The primary key of record to be deleted
      * 
      * @returns boolean Return if the operation was successful or not
      */
-    public function delete_user($uid)
+    public function delete($id)
     {
-        $query = "DELETE FROM `$this->tbl` WHERE $this->primary=$uid";
+        $query = "DELETE FROM `$this->tbl` WHERE $this->primary=$id";
         return $this->db->exec($query) > 0;
     }
 
     /**
-     * Inserts a record in to user table
+     * Inserts a record in to the table
      * 
      * @todo change it according to https://stackoverflow.com/a/37591506/7337013
      * 
-     * @todo By Moz125: Don't add uid and timestamp column while inserting
+     * @todo: Don't add primary key and timestamp column while inserting
      * 
      * @param mixed[] $vals Associative array containing keys as column names
      * 
      * @return boolean Returns if the operation was successful or not
      */
-    public function insert_user($vals)
+    public function insert($vals)
     {
         $fields = array_keys($vals);
         $values = array_values($vals);
@@ -80,18 +80,18 @@ class User
     }
 
     /**
-     * Update a record in to user table
+     * Update a record in to the table
      * 
      * @todo change it according to https://stackoverflow.com/a/37591506/7337013
      * 
-     * @todo Don't add uid and timestamp column while updating
+     * @todo Don't add primary key and timestamp column while updating
      * 
      * @param mixed[] $vals Associative array containing keys as column names
-     * @param integer $id User ID to update user Info
+     * @param integer $id User ID to update record
      * 
      * @return boolean Returns if the operation was successful or not
      */
-    public function update_user($vals, $id)
+    public function update($vals, $id)
     {
         $fields = array_keys($vals);
         $fieldlist = "";
