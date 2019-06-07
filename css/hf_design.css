@@ -1,0 +1,121 @@
+.login_page {
+	background-color: #f7f9fb;
+	font-size: 14px;
+}
+
+.login_page .logo{
+	width: 90px;
+	height: 90px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin: 40px auto;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+	position: relative;
+    z-index: 1;
+    
+    
+}
+
+.login_menu {
+    height: 450px;
+    width: 350px;
+    margin-left: 30em;
+    margin-top: 3.5em;
+    border: 1.5px solid black;
+}
+
+.login_help{
+    margin-left: 15px;
+    padding: 5px;
+}
+
+.group_holder {
+    width: 90px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 2em;
+}
+
+.group_screen{
+    height: 570px;
+    width: 1200px;
+    margin-left: 8em;
+    margin-top: -38em;
+}
+
+.group_label img{
+    border: 1px solid black;
+    border-spacing: 1em;
+}
+
+.group_label h5{
+    font-size: 15px;
+    margin-left: 15px;
+    color: #17729d;
+    
+}
+
+.user_post{
+    height: auto;
+    width: auto;
+    margin-top: 0.25em;
+}
+
+.user_post h5{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.post_buttons{
+    padding: 5px;
+}
+
+.group_posts_holder{
+    margin-left: 0.1em;
+
+}
+
+.group_friend_icon{
+    margin-left: 1.5em;
+    margin-top: 0.2em;
+    border: 1px solid black;
+}
+
+.group_post_font{
+    font-size: 15px;
+}
+
+.post_timestamp{
+    font-size: 11.5px;
+    margin-top: 0.3em;
+}
+
+.comments{
+}
+
+.comment_pic{
+    margin-left: 1em;
+}
+
+.message_view{
+    height: auto;
+    width: auto;
+    margin-left: 0em;
+    
+  }
+
+.message_view h5{
+    font-size: 14px;
+}
+
+
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: 8em;
+  }
+
+
+
