@@ -2,17 +2,17 @@
 require_once __DIR__ . "/../config/connection.php";
 
 /**
- * Perfoms the CRUD operation on Users Table.
+ * Perfoms the CRUD operation on group_preferences Table.
  * 
  * This class includes all the CRUD operations including other minor operation.
  */
-class User
+class GroupPreference
 {
     /**
      * @todo Implement Cached functionality to reduce response time
      */
-    private $tbl = "users";
-    private $primary = "uid";
+    private $tbl = "group_preferences";
+    private $primary = "gpid";
     private $db = null;
 
     /**
