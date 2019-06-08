@@ -16,6 +16,14 @@ class UserPreference
     private $db = null;
 
     /**
+     * The neccessary constructor
+     * 
+     */
+    public function __construct() {
+        $db = (new Database())->get_connection();
+    }
+
+    /**
      * Selects all the rows in the table.
      * 
      * @returns mixed[][]|null Returns array of all the rows
