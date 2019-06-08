@@ -20,7 +20,7 @@ class Post
      * 
      */
     public function __construct() {
-        $db = (new Database())->get_connection();
+        $this->db = (new Database())->get_connection();
     }
 
     /**
