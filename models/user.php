@@ -21,7 +21,7 @@ class User
      */
     public function __construct()
     {
-        $db = (new Database())->get_connection();
+        $this->db = (new Database())->get_connection();
     }
 
     /**
