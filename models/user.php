@@ -19,7 +19,8 @@ class User
      * The neccessary constructor
      * 
      */
-    public function __construct() {
+    public function __construct()
+    {
         $db = (new Database())->get_connection();
     }
 
@@ -76,7 +77,7 @@ class User
         $fieldlist = implode(',', $fields);
 
         /* Fixed by @Moz125 */
-        for($x = 0; $x < count($values); $x++){
+        for ($x = 0; $x < count($values); $x++) {
             $values[$x] = "'{$values[$x]}'";
         }
         $qs = implode(", ", $values);
@@ -103,10 +104,10 @@ class User
     {
         $fields = array_keys($vals);
         $fieldlist = "";
-        for($i=0;$i<count($fields); $i++) {
+        for ($i = 0; $i < count($fields); $i++) {
             $field = $fields[$i];
             $fieldlist .= "`$field`=:$field";
-            if($i+ 1 != count($fields)) {
+            if ($i + 1 != count($fields)) {
                 $fieldlist .= ", ";
             }
         }
