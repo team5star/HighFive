@@ -2,11 +2,11 @@
 require_once __DIR__ . "/../config/connection.php";
 
 /**
- * Perfoms the CRUD operation on UserInfoTable.
+ * Perfoms the CRUD operation on usersinfo Table.
  * 
  * This class includes all the CRUD operations including other minor operation.
  */
-class UserInfo
+class User
 {
     /**
      * @todo Implement Cached functionality to reduce response time
