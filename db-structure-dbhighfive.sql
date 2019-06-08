@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2019 at 08:31 AM
+-- Generation Time: Jun 08, 2019 at 07:20 PM
 -- Server version: 10.1.40-MariaDB
--- PHP Version: 7.2.18
+-- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbhighfive`
 --
-CREATE DATABASE IF NOT EXISTS `dbhighfive` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `dbhighfive`;
 
 -- --------------------------------------------------------
 
@@ -128,7 +126,8 @@ CREATE TABLE `group_preferences` (
   `gpid` int(11) NOT NULL,
   `gid` int(11) NOT NULL,
   `visibility` int(11) NOT NULL,
-  `banned_users` mediumtext
+  `banned_users` mediumtext,
+  `group_profile` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -162,6 +161,7 @@ CREATE TABLE `users` (
   `gender` varchar(10) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `recovery_code` varchar(50) DEFAULT NULL,
+  `recovery_code_created` datetime DEFAULT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -179,7 +179,8 @@ CREATE TABLE `usersinfo` (
   `home_town` varchar(100) DEFAULT NULL,
   `current_city` varchar(100) DEFAULT NULL,
   `occupation` varchar(100) DEFAULT NULL,
-  `about` mediumtext
+  `about` mediumtext,
+  `profile_pic` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -267,7 +268,9 @@ ALTER TABLE `group_preferences`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`pid`),
-  ADD KEY `uid` (`uid`);
+  ADD KEY `uid` (`uid`),
+  ADD KEY `aid` (`aid`),
+  ADD KEY `gid` (`gid`);
 
 --
 -- Indexes for table `users`
@@ -414,6 +417,8 @@ ALTER TABLE `group_preferences`
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
+  ADD CONSTRAINT `aid` FOREIGN KEY (`aid`) REFERENCES `attachments` (`aid`),
+  ADD CONSTRAINT `gid` FOREIGN KEY (`gid`) REFERENCES `groups` (`gid`),
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
 
 --
@@ -427,6 +432,16 @@ ALTER TABLE `usersinfo`
 --
 ALTER TABLE `user_preferences`
   ADD CONSTRAINT `user_preferences_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `recovery_code_expired` ON SCHEDULE EVERY 1 HOUR STARTS '2019-06-08 21:49:44' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE users
+SET recovery_code = NULL
+where TIMESTAMPDIFF(MINUTE, recovery_code_created,CURRENT_TIMESTAMP) > 60$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
