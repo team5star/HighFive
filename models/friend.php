@@ -20,7 +20,7 @@ class Friend
      * 
      */
     public function __construct() {
-        $this->db = (new Database())->get_connection();
+        $db = (new Database())->get_connection();
     }
 
     /**
