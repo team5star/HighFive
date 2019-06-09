@@ -17,7 +17,6 @@ class UserController
     public function __construct()
     {
         $this->user = new User();
-        
     }
 
     /**
@@ -33,6 +32,26 @@ class UserController
         if (count($users) > 0) {
             foreach ($users as $user) {
                 if ($user['username'] == $username) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if email is already reistered.
+     * 
+     * @param string $email Valid email address that is to be checked
+     * 
+     * @returns boolean Returns true if user already exists false otherwise
+     */
+    public function email_exists($email)
+    {
+        $users = $this->user->select_all();
+        if (count($email) > 0) {
+            foreach ($users as $user) {
+                if ($user['email'] == $email) {
                     return true;
                 }
             }
