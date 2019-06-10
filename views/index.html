@@ -9,7 +9,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <link href="../css/hf_design.css" rel="stylesheet">
+      <link href="hf_design.css" rel="stylesheet">
    </head>
    <body >
       <div class="navbar fixed-top bg-white box-shadow py-0">
@@ -47,19 +47,22 @@
          <nav class="navbar navbar-inverse  bg-white box-shadow py-0">
             <div class="container-fluid">
                <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/account.svg" height = 24px  width = 24px></object>
+               <object type="image/svg+xml" data="Pictures/svg/account.svg" height = 24px  width = 24px></object>
                </a>
                <a class="nav-link" href="#" data-toggle="modal" data-target="#message_menu">
-               <object type="image/svg+xml" data="../images/svg/messages.svg" height = 24px  width = 24px></object>
+               <object type="image/svg+xml" data="Pictures/svg/messages.svg" height = 24px  width = 24px></object>
                </a>
                <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 24px  width = 24px></object>
-               </a>
+               <object type="image/svg+xml" data="Pictures/svg/notifications.svg" height = 24px  width = 24px></object>
+               <span class="badge" style=>3</span>   
+               </a> 
+
+                  
                <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/settings.svg"height = 24px  width = 24px></object>
+               <object type="image/svg+xml" data="Pictures/svg/settings.svg"height = 24px  width = 24px></object>
                </a> 
                <div class="logo">
-                  <img src="../images/logo.png" alt="logo" height = 22px  width = 22px class="rounded-circle" style="margin-top:-0.5em; margin-left:0.5em">
+                  <img src="Pictures/logo/logo.png" alt="logo" height = 22px  width = 22px class="rounded-circle" style="margin-top:-0.5em; margin-left:0.5em">
                </div>
             </div>
          </nav>
@@ -77,7 +80,7 @@
                      <div class = "message_view">
                         <div class = "row">
                            <div class = "col-0 comment_pic">
-                              <img src="../images/friend_pics/orton.jpg" alt="logo" height = 30px width = 30px  class="rounded-circle">
+                              <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 30px width = 30px  class="rounded-circle">
                            </div>
                            <div class = "col-3">
                               <h5>
@@ -95,7 +98,7 @@
                      <div class = "message_view">
                         <div class = "row">
                            <div class = "col-0 comment_pic">
-                              <img src="../images/friend_pics/arab.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                              <img src="Pictures/friend_pics/arab.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
                            </div>
                            <div class = "col-3">
                               <h5>
@@ -121,7 +124,7 @@
                   <table>
                      <tr>
                         <td style="padding-right: 1em; ">
-                           <img src="../images/friend_pics/orton.jpg" alt="logo" height = 60px width = 60px class="rounded-circle center-block modal-title">
+                           <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 60px width = 60px class="rounded-circle center-block modal-title">
                         </td>
                         <td>
                            <strong>Randy Orton</strong> 
@@ -134,7 +137,7 @@
                   <div class="friend_message">
                      <div class="row">
                         <div class="col-sm-1">
-                           <img src="../images/friend_pics/orton.jpg" alt="logo" height = 45px width = 45px class="rounded-circle">
+                           <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 45px width = 45px class="rounded-circle">
                         </div>
                         <div class="col" style="margin-left: 1em">
                            <div class="row">
@@ -151,7 +154,7 @@
                   <div id="friend_message">
                      <div class="row">
                         <div class="col-sm-1">
-                           <img src="../images/friend_pics/orton.jpg" alt="logo" height = 45px width = 45px class="rounded-circle">
+                           <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 45px width = 45px class="rounded-circle">
                         </div>
                         <div class="col" style="margin-left: 1em">
                            <div class="row">
@@ -178,7 +181,7 @@
                            </div>
                         </div>
                         <div class="col-sm-1 user_message_pic">
-                           <img src="../images/letter.png" alt="logo" height = 45px class="rounded-circle" style="float:right">
+                           <img src="Pictures/letter.png" alt="logo" height = 45px class="rounded-circle" style="float:right">
                         </div>
                      </div>
                   </div>
@@ -194,7 +197,7 @@
                               <tr>
                                  <td>
                                     <div class="input-group-btn search-panel">
-                                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width: auto; height: auto; margin-top:1em;">
+                                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width: auto; height: auto; margin-top:1em>
                                           <span id="search_concept" style="font-size: 15px">Add</span> <span class="caret"></span>
                                        </button>
                                        <form>
@@ -230,18 +233,16 @@
             </div>
          </div>
       </div>
-      </div>
       <div class="container-fluid" style="margin-top: 3.2em">
          <div class="row">
             <div class="col-sm-0.5" style="margin-left: 0.5em; margin-right: 1em; margin-left: 1em; background-color: #eef7fe;border-right: 2px solid #bfd8e4; border-left: 2px solid #bfd8e4">
                <ul class="nav flex-column px-0 py-2">
-                 
-                  <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em">Groups</h4>
+                  <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em"><strong>Groups</strong></h4>
                   <li class="nav-item" >
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "../images/group_icons/ben10.png" height = 30px width = 30px class="rounded"></td>
+                              <td><img src = "Pictures/group_icons/ben10.png" height = 30px width = 30px class="rounded"></td>
                               <td>
                                  <h5>Ben 10 Lovers</h5>
                               </td>
@@ -253,7 +254,7 @@
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "../images/group_icons/cat.jpg" height = 30px width = 30px class="rounded"></td>
+                              <td><img src = "Pictures/group_icons/cat.jpg" height = 30px width = 30px class="rounded"></td>
                               <td>
                                  <h5>Cat Hype Squad</h5>
                               </td>
@@ -265,7 +266,7 @@
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "../images/group_icons/dc.png" height = 30px width = 30px class="rounded"></td>
+                              <td><img src = "Pictures/group_icons/dc.png" height = 30px width = 30px class="rounded"></td>
                               <td>
                                  <h5>DC Nigs onlyyyy</h5>
                               </td>
@@ -277,7 +278,7 @@
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "../images/group_icons/monkey.jpg" height =30px width = 30px class="rounded"></td>
+                              <td><img src = "Pictures/group_icons/monkey.jpg" height =30px width = 30px class="rounded"></td>
                               <td>
                                  <h5>Oy it da Monks</h5>
                               </td>
@@ -286,77 +287,81 @@
                      </a>
                   </li>
                   <li>
-                     <hr style = "border: 1px solid antiquewhite; border-radius: 2px; width: auto;">
+                     <hr style = "border: 1px solid #fdf2cd; border-radius: 2px; width: auto;">
                   </li>
-                  <h4 style="align-self: center; font-size: 18px; color: black;">Members</h4>
+                  <h4 style="align-self: center; font-size: 18px; color: black;"><strong>Members</strong></h4>
                   <li class="nav-item">
                      <a class="nav-link" href="#">
-
                         <div class="row">
-                              <div class="col-sm-1">
-                                    <img src="../images/friend_pics/orton.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                              </div>
-                              <div class="col" >
-                                 <div class="row group_label">
-                                       <div class="col" ><h5>Randy Orton</h5></div>
+                           <div class="col-sm-1">
+                              <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" >
+                                    <h5>Randy Orton</h5>
                                  </div>
-                                 <div class="row" style="margin-top: -1em; margin-left: 1em">
-                                       <object type="image/svg+xml" data="../images/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
-                                       <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
-                                    </div>
+                              </div>
+                              <div class="row" style="margin-top: -1em; margin-left: 1em">
+                                 <object type="image/svg+xml" data="Pictures/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
+                                 <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
                               </div>
                            </div>
+                        </div>
                      </a>
                   </li>
                   <li class="nav-item">
-                        <a class="nav-link" href="#">
-   
-                           <div class="row">
-                                 <div class="col-sm-1">
-                                       <img src="../images/friend_pics/sigma.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                 </div>
+                     <a class="nav-link" href="#">
+                        <div class="row">
+                           <div class="col-sm-1">
+                              <img src="Pictures/friend_pics/sigma.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
                                  <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" ><h5>Sigma</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1em">
-                                          <object type="image/svg+xml" data="../images/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
-                                          <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
-                                       </div>
+                                    <h5>Sigma</h5>
                                  </div>
                               </div>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                           <a class="nav-link" href="#">
-      
-                              <div class="row">
-                                    <div class="col-sm-1">
-                                          <img src="../images/friend_pics/zambino.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                    </div>
-                                    <div class="col" >
-                                       <div class="row group_label">
-                                             <div class="col" ><h5>Zambino</h5></div>
-                                       </div>
-                                    </div>
+                              <div class="row" style="margin-top: -1em; margin-left: 1em">
+                                 <object type="image/svg+xml" data="Pictures/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
+                                 <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">
+                        <div class="row">
+                           <div class="col-sm-1">
+                              <img src="Pictures/friend_pics/zambino.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" >
+                                    <h5>Zambino</h5>
                                  </div>
-                           </a>
-                        </li>
-                        <li class="nav-item">
-                              <a class="nav-link" href="#">
-         
-                                 <div class="row">
-                                       <div class="col-sm-1">
-                                             <img src="../images/friend_pics/gandhi.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                       </div>
-                                       <div class="col" >
-                                          <div class="row group_label">
-                                                <div class="col" ><h5>Mahatma Gandhi</h5></div>
-                                          </div>
-                                       </div>
-                                    </div>
-                              </a>
-                           </li>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">
+                        <div class="row">
+                           <div class="col-sm-1">
+                              <img src="Pictures/friend_pics/gandhi.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" >
+                                    <h5>Mahatma Gandhi</h5>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </li>
                   <li>
                      <hr style = "border: 1px solid antiquewhite; border-radius: 2px; width: auto;">
                   </li>
@@ -385,7 +390,7 @@
                   <div style="margin-top: 1em;">
                      <div class="row">
                         <div class="col-sm-1">
-                           <img src="../images/letter.png" alt="logo" height = 45px class="rounded-circle group_friend_icon">
+                           <img src="Pictures/letter.png" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
                         </div>
                         <div class="col" style="margin-left:2em;">
                            <div class="row">
@@ -405,16 +410,16 @@
                                  <div id="reply" class="collapse">
                                     <textarea class="form-control" rows="1" id="post" placeholder="Post a message"></textarea>
                                     <div class = "post_buttons">
-                                         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                            <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                               <div style="margin-left: 1em;">
-                                                  <li><a href="#">Picture</a></li>
-                                                  <li><a href="#">Video</a></li>
-                                                  <li><a href="#">File</a></li>
-                                               </div>
-                                            </ul>
+                                       <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                       <span id="search_concept">Add attachment</span> <span class="caret"></span>
+                                       </button>
+                                       <ul class="dropdown-menu" role="menu">
+                                          <div style="margin-left: 1em;">
+                                             <li><a href="#">Picture</a></li>
+                                             <li><a href="#">Video</a></li>
+                                             <li><a href="#">File</a></li>
+                                          </div>
+                                       </ul>
                                        <button type="submit" class="btn btn-primary btn-sm">
                                        Post
                                        </button>
@@ -426,7 +431,7 @@
                                  <div id="comments" class="collapse">
                                     <div class="row">
                                        <div class="col-sm-1">
-                                          <img src="../images/friend_pics/zambino.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
+                                          <img src="Pictures/friend_pics/zambino.jpg" alt="logo" height = 35px width = 35px class="rounded-circle group_friend_icon">
                                        </div>
                                        <div class="col" style="margin-left: 2em">
                                           <div class="row">
@@ -444,7 +449,7 @@
                                     </div>
                                     <div class="row">
                                        <div class="col-sm-1">
-                                          <img src="../images/friend_pics/orton.jpg"" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
+                                          <img src="Pictures/friend_pics/orton.jpg" alt="logo" height = 35px width = 35px class="rounded-circle group_friend_icon">
                                        </div>
                                        <div class="col" style="margin-left: 2em">
                                           <div class="row">
@@ -470,7 +475,7 @@
                   <div>
                      <div class="row">
                         <div class="col-sm-1">
-                           <img src="../images//friend_pics/zambino.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
+                           <img src="Pictures//friend_pics/zambino.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
                         </div>
                         <div class="col" style="margin-left:2em;">
                            <div class="row">
@@ -485,35 +490,34 @@
                               <p class="group_post_font">Check out this wallpaper</p>
                            </div>
                            <div class="row">
-                              <img src="../images/posts/ben10_wallpaper.jpg">
+                              <img src="Pictures/posts/ben10_wallpaper.jpg">
                            </div>
                            <div class="row post_options">
-                                 <div class="col-sm-0.5">
-                                    <a href="#reply" data-toggle="collapse">Reply</a>
-                                    <div id="reply" class="collapse">
-                                       <textarea class="form-control" rows="1" id="post" placeholder="Post a message"></textarea>
-                                       <div class = "post_buttons">
-                                            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                               <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                               </button>
-                                               <ul class="dropdown-menu" role="menu">
-                                                  <div style="margin-left: 1em;">
-                                                     <li><a href="#">Picture</a></li>
-                                                     <li><a href="#">Video</a></li>
-                                                     <li><a href="#">File</a></li>
-                                                  </div>
-                                               </ul>
-                                          <button type="submit" class="btn btn-primary btn-sm">
-                                          Post
-                                          </button>
-                                       </div>
+                              <div class="col-sm-0.5">
+                                 <a href="#reply" data-toggle="collapse">Reply</a>
+                                 <div id="reply" class="collapse">
+                                    <textarea class="form-control" rows="1" id="post" placeholder="Post a message"></textarea>
+                                    <div class = "post_buttons">
+                                       <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                       <span id="search_concept">Add attachment</span> <span class="caret"></span>
+                                       </button>
+                                       <ul class="dropdown-menu" role="menu">
+                                          <div style="margin-left: 1em;">
+                                             <li><a href="#">Picture</a></li>
+                                             <li><a href="#">Video</a></li>
+                                             <li><a href="#">File</a></li>
+                                          </div>
+                                       </ul>
+                                       <button type="submit" class="btn btn-primary btn-sm">
+                                       Post
+                                       </button>
                                     </div>
                                  </div>
-                                 <div class="col">
-                                    <a href="#" data-toggle="collapse">View comments</a>
-                               
-                                 </div>
                               </div>
+                              <div class="col">
+                                 <a href="#" data-toggle="collapse">View comments</a>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      <hr style="background-color: #d0e2eb">
@@ -521,7 +525,7 @@
                   <div>
                      <div class="row">
                         <div class="col-sm-1">
-                           <img src="../images/friend_pics/gandhi.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
+                           <img src="Pictures/friend_pics/gandhi.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
                         </div>
                         <div class="col" style="margin-left:2em;">
                            <div class="row">
@@ -541,32 +545,31 @@
                               </iframe>
                            </div>
                            <div class="row post_options">
-                                 <div class="col-sm-0.5">
-                                    <a href="#reply" data-toggle="collapse">Reply</a>
-                                    <div id="reply" class="collapse">
-                                       <textarea class="form-control" rows="1" id="post" placeholder="Post a message"></textarea>
-                                       <div class = "post_buttons">
-                                            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                               <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                               </button>
-                                               <ul class="dropdown-menu" role="menu">
-                                                  <div style="margin-left: 1em;">
-                                                     <li><a href="#">Picture</a></li>
-                                                     <li><a href="#">Video</a></li>
-                                                     <li><a href="#">File</a></li>
-                                                  </div>
-                                               </ul>
-                                          <button type="submit" class="btn btn-primary btn-sm">
-                                          Post
-                                          </button>
-                                       </div>
+                              <div class="col-sm-0.5">
+                                 <a href="#reply" data-toggle="collapse">Reply</a>
+                                 <div id="reply" class="collapse">
+                                    <textarea class="form-control" rows="1" id="post" placeholder="Post a message"></textarea>
+                                    <div class = "post_buttons">
+                                       <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                       <span id="search_concept">Add attachment</span> <span class="caret"></span>
+                                       </button>
+                                       <ul class="dropdown-menu" role="menu">
+                                          <div style="margin-left: 1em;">
+                                             <li><a href="#">Picture</a></li>
+                                             <li><a href="#">Video</a></li>
+                                             <li><a href="#">File</a></li>
+                                          </div>
+                                       </ul>
+                                       <button type="submit" class="btn btn-primary btn-sm">
+                                       Post
+                                       </button>
                                     </div>
                                  </div>
-                                 <div class="col">
-                                    <a href="#" data-toggle="collapse">View comments</a>
-                               
-                                 </div>
                               </div>
+                              <div class="col">
+                                 <a href="#" data-toggle="collapse">View comments</a>
+                              </div>
+                           </div>
                         </div>
                      </div>
                      <hr style="background-color: #d0e2eb">
@@ -575,68 +578,112 @@
                <br>
                <br>
             </div>
-            <div class="col-sm-0.5" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4;">
-               <ul class="nav flex-column px-0 py-2">
-                 
+            <div class="col" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4;    
+               -ms-flex: 0 0 230px;  flex: 0 0 230px;">
+               <div class ="group_info">
+                  <div class="row">
+                     <div class="col" >
+                        <h5><strong>Ben 10 Lovers</strong></h5>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <p>A place for the most elite and wesome Ben 10 fans to gather.</p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Members: <strong>5</strong></div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Moderator(s):</div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-1"><img src="Pictures/friend_pics/sigma.jpg" alt="logo" height = 18px width = 18px class="rounded-circle"></div>
+                     <div class="col" style="color: #17729d">Sigma
+                     </div>
+                  </div>
+                  <div class="row"  style="margin-top:0.5em">
+                     <div class="col-sm-5" style="margin-top:0.5em">
+                        <button class="button joined">Joined</button>
+                     </div>
+                     <div class="col-sm-2">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="Pictures/svg/notification.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                     <div class="col">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="Pictures/svg/message_group.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <ul class="nav flex-column px-0 py-2" style="margin-top: 2em">
                   <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em"><strong> <i>#Groups for you</i></strong></h4>
-
-                     <li class="nav-item">
-                           <a class="nav-link" href="#">
-                           <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px">
-                                 <div class="col-sm-1">
-                                       <img src = "../images/group_icons/code.png" height = 30px width = 30px class="rounded">
-                                 </div>
-                                 <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" style="margin-left:0.5em"><h5>Degenerate Coders</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                          <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                          <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                       </div>
-                                 </div>
-                              </div>
-                              </a>
-                  </li>
                   <li class="nav-item">
-                  <a class="nav-link" href="#">
+                     <a class="nav-link" href="#">
                         <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px">
-                              <div class="col-sm-1">
-                                    <img src = "../images/group_icons/biryani.jpg" height = 30px width = 30px class="rounded">
-                              </div>
-                              <div class="col" >
-                                 <div class="row group_label">
-                                       <div class="col" style="margin-left:0.5em"><h5>Biryani Conniseurs</h5></div>
+                           <div class="col-sm-1">
+                              <img src = "Pictures/group_icons/code.png" height = 30px width = 30px class="rounded">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" style="margin-left:0.5em">
+                                    <h5>Degenerate Coders</h5>
                                  </div>
-                                 <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                       <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                       <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                    </div>
+                              </div>
+                              <div class="row" style="margin-top: -1em; margin-left: 1.4em">
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/info.svg" height = 14px  width = 14px></object></h5>
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
                               </div>
                            </div>
-                  </a>
-               </li>
-               <li class="nav-item">
+                        </div>
+                     </a>
+                  </li>
+                  <li class="nav-item">
                      <a class="nav-link" href="#">
-                           <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px;">
-                                 <div class="col-sm-1">
-                                       <img src = "../images/group_icons/gamer.png" height = 30px width = 30px class="rounded">
-                                 </div>
-                                 <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" style="margin-left:0.5em"><h5>Gamer Nation</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                          <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                          <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                       </div>
+                        <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px">
+                           <div class="col-sm-1">
+                              <img src = "Pictures/group_icons/biryani.jpg" height = 30px width = 30px class="rounded">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" style="margin-left:0.5em">
+                                    <h5>Biryani Conniseurs</h5>
                                  </div>
                               </div>
+                              <div class="row" style="margin-top: -1em; margin-left: 1.4em">
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/info.svg" height = 14px  width = 14px></object></h5>
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
+                              </div>
+                           </div>
+                        </div>
                      </a>
-               </li>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">
+                        <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px;">
+                           <div class="col-sm-1">
+                              <img src = "Pictures/group_icons/gamer.png" height = 30px width = 30px class="rounded">
+                           </div>
+                           <div class="col" >
+                              <div class="row group_label">
+                                 <div class="col" style="margin-left:0.5em">
+                                    <h5>Gamer Nation</h5>
+                                 </div>
+                              </div>
+                              <div class="row" style="margin-top: -1em; margin-left: 1.4em">
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/info.svg" height = 14px  width = 14px></object></h5>
+                                 <h5><object type="image/svg+xml" data="Pictures/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </li>
                </ul>
             </div>
          </div>
       </div>
    </body>
 </html>
+
