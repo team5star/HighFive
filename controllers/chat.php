@@ -47,9 +47,9 @@ class ChatController
         $rid = $this->user->get_uid_by_username($receiver);
 
         return $this->chat->insert([
-            'senderId' = $sid,
-            'receiverId' = $rid,
-            'aId' = $aid
+            'senderId' => $sid,
+            'receiverId' => $rid,
+            'aId' => $aid
         ]);
     }
     /**
