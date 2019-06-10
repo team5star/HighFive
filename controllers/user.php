@@ -101,7 +101,7 @@ class UserController
         return false;
     }
 
-    public function create_account() {
-        
+    public function create_account($email, $username, $salted_password, $dob, $gender) {
+
     }
 }
