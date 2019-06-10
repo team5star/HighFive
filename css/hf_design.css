@@ -53,22 +53,14 @@
 .group_label h5{
     font-size: 15px;
     margin-left: 15px;
-    padding: 10px;
     color: #17729d;
-
-}
-
-.group_label h5:hover{
-    background-color: #173b67;
-    color: white;
-    padding: 10px;
-    border-block: rounded;
+    
 }
 
 .user_post{
     height: auto;
     width: auto;
-    margin-bottom: 2em;
+    margin-top: 0.25em;
 }
 
 .user_post h5{
@@ -104,7 +96,7 @@
 }
 
 .comment_pic{
-    margin-left: 4em;
+    margin-left: 1em;
 }
 
 .message_view{

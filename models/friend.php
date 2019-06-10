@@ -2,17 +2,17 @@
 require_once __DIR__ . "/../config/connection.php";
 
 /**
- * Perfoms the CRUD operation on Users Table.
+ * Perfoms the CRUD operation on friends Table.
  * 
  * This class includes all the CRUD operations including other minor operation.
  */
-class User
+class Friend
 {
     /**
      * @todo Implement Cached functionality to reduce response time
      */
-    private $tbl = "users";
-    private $primary = "uid";
+    private $tbl = "friends";
+    private $primary = "fid";
     private $db = null;
 
     /**
@@ -113,39 +113,5 @@ class User
         $sql = "UPDATE `$this->tbl` SET $fieldlist WHERE `$this->primary` = $id";
         $q = $this->db->prepare($sql);
         return $q->execute($vals);
-    }
-    /**
-     * Get the UID of user by username
-     * 
-     * @param string $username Username for which UID is to be found
-     * 
-     * @returns integer|null UID of the username if found, null otherwise
-     */
-    public function get_uid_by_username($username)
-    {
-        $users = $this->select_all();
-        foreach ($users as $user) {
-            if ($user['username'] == $username) {
-                return $user['uid'];
-            }
-        }
-        return null;
-    }
-    /**
-     * Get the UID of user by email
-     * 
-     * @param string $email Email for which UID is to be found
-     * 
-     * @returns integer|null UID of the email if found, null otherwise
-     */
-    public function get_uid_by_email($email)
-    {
-        $users = $this->select_all();
-        foreach ($users as $user) {
-            if ($user['username'] == $username) {
-                return $user['uid'];
-            }
-        }
-        return null;
     }
 }
