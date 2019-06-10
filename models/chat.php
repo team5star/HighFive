@@ -11,7 +11,7 @@ class Chat
     /**
      * @todo Implement Cached functionality to reduce response time
      */
-    private $tbl = "comments";
+    private $tbl = "chats";
     private $primary = "chid";
     private $db = null;
 
