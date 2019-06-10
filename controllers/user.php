@@ -49,7 +49,7 @@ class UserController
     public function email_exists($email)
     {
         $users = $this->user->select_all();
-        if (count($email) > 0) {
+        if (count($users) > 0) {
             foreach ($users as $user) {
                 if ($user['email'] == $email) {
                     return true;
@@ -57,5 +57,51 @@ class UserController
             }
         }
         return false;
+    }
+
+    /**
+     * Verify credentials using username
+     * 
+     * @param string $username String representing an existing username
+     * @param string $salted_password represent a salted/digested password
+     * 
+     * @returns boolean Returns if the credentials matched or not
+     * 
+     */
+    public function verify_login_via_username($username, $salted_password) {
+        $users = $this->user->select_all();
+        if(count($users)>0) {
+            foreach ($users as $user) {
+                if ($user['username'] == $username && $user['password'] == $salted_password) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verify credentials using email address
+     * 
+     * @param string $email String representing an existing email address
+     * @param string $salted_password represent a salted/digested password
+     * 
+     * @returns boolean Returns if the credentials matched or not
+     * 
+     */
+    public function verify_login_via_email($email, $salted_password) {
+        $users = $this->user->select_all();
+        if(count($users)>0) {
+            foreach ($users as $user) {
+                if ($user['email'] == $email && $user['password'] == $salted_password) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function create_account() {
+        
     }
 }
