@@ -82,7 +82,7 @@ class UserPreference
         $qs = implode(", ", $values);
         /* end of fix */
 
-        $sql = "insert into `$this->tbl`($fieldlist) values(${qs}?)";
+        $sql = "insert into `$this->tbl`($fieldlist) values(${qs})";
         $q = $this->db->prepare($sql);
         return $q->execute($values);
     }
