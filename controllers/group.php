@@ -1,11 +1,11 @@
 <?php
 
-require_once _DIR_ . "/../models/group.php";
-require_once _DIR_ . "/../models/groupmember.php";
-require_once _DIR_ . "/../models/post.php";
-require_once _DIR_ . "/../models/comment.php";
-require_once _DIR_ . "/../models/user.php";
-require_once _DIR_ . "/../models/attachment.php";
+require_once __DIR__ . "/../models/group.php";
+require_once __DIR__ . "/../models/groupmember.php";
+require_once __DIR__ . "/../models/post.php";
+require_once __DIR__ . "/../models/comment.php";
+require_once __DIR__ . "/../models/user.php";
+require_once __DIR__ . "/../models/attachment.php";
 /**
  * Controller for the Different Groups
  */
