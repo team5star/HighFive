@@ -135,7 +135,7 @@ class UserController
     public function generate_recovery_code($email)
     {
         date_default_timezone_set('UTC');
-        $uid = $this->user->get_uid_by_email($email);
+        $uid = $this->get_uid_by_email($email);
         $code = $this->guidv4();
         $timestamp = date("Y-m-d H:i:s");
         if ($this->user->update([

@@ -1,10 +1,9 @@
 <?php
-require_once("connection.php");
 // Start the session
 session_start();
-if(!isset($_SESSION['user_id']))
+if(!isset($_SESSION['uid']))
 {
- header('location:login.html');
+ header('location:login.php');
 }
 ?>
 

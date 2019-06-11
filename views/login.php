@@ -1,5 +1,47 @@
 
+<?php
+session_start();
+error_reporting(~0);
+ini_set('display_errors', true);
+require_once __DIR__ . '/../controllers/user.php';
 
+
+if(isset($_SESSION['uid'])){
+   header('location:index.php');
+}
+if(isset($_POST['login'])) {
+   login();
+}
+$user = new UserController();
+$error = '';
+function signup(){
+global $user;
+$username = $_POST['username'];
+$email = $_POST['email'];
+$password = md5($_POST['password']);
+$date = $_POST['date'];
+$gender = $_POST['Gender'];
+if(!($user->email_exists($email) && $user->username_exists($username))){
+   $user->create_account($email,$username,$password,$date,$gender);
+}
+}
+
+function login() {
+$user = new UserController();
+$email = $_POST['email'];
+$password = md5($_POST['password']);
+if($user->verify_login_via_email($email,$password)) {
+   unset($_SESSION['login_error']);
+   $_SESSION['uid'] = $user->get_uid_by_email($email);
+   header('Location:index.php');
+
+}
+else{
+$_SESSION['login_error'] = "Invalid credentials! Can't login.";
+header("Location: login.php");
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -27,7 +69,12 @@
                   <div class="card fat">
                      <div class="card-body" style="border: 1px solid #89cdfd;">
                         <h4 class="card-title" style="text-align: center" >Welcome</h4>
-                        
+                        <?php if(isset($_SESSION['login_error'])) { ?> 
+                     <div class="alert alert-danger" role="alert">
+                        <?php echo $_SESSION['login_error']; ?>
+                     </div>
+                       <?php }
+                     ?>
                         <!--Main Login MENU-->
                         <form method="POST">
                            <div class="form-group">
@@ -45,7 +92,7 @@
                               </div>
                            </div>
                            <div class="form-group">
-                              <button type="submit" class="btn btn-primary btn-block" style="background-color: #46B1FC"> Login </button>
+                              <button type="submit" class="btn btn-primary btn-block" name="login" style="background-color: #46B1FC"> Login </button>
                            </div>
                         </form>
                         
@@ -204,4 +251,5 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    </body>
 </html>
+
 
