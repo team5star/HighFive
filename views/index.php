@@ -1,9 +1,16 @@
 <?php
 // Start the session
 session_start();
+require_once __DIR__ . "/../controllers/user.php";
 if(!isset($_SESSION['uid']))
 {
  header('location:login.php');
+} else {
+   $user = new User();
+   $user = $user->select_by_id($_SESSION['uid']);
+   $_SESSION['email'] = $user['email'];
+   $_SESSION['username'] = $user['username'];
+   unset($user);
 }
 ?>
 
