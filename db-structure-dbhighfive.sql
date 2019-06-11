@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2019 at 07:20 PM
+-- Generation Time: Jun 10, 2019 at 11:55 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbhighfive`
 --
+CREATE DATABASE IF NOT EXISTS `dbhighfive` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `dbhighfive`;
 
 -- --------------------------------------------------------
 
@@ -44,8 +46,9 @@ CREATE TABLE `chats` (
   `chid` int(11) NOT NULL,
   `senderId` int(11) NOT NULL,
   `receiverId` int(11) NOT NULL,
-  `message` mediumtext NOT NULL,
-  `type` varchar(100) NOT NULL
+  `message` mediumtext,
+  `aid` int(11) NOT NULL DEFAULT '0',
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,23 +61,9 @@ CREATE TABLE `comments` (
   `comid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `parent_comid` int(11) NOT NULL,
+  `parent_comid` int(11) DEFAULT NULL,
   `comment` mediumtext NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `flagged`
---
-
-CREATE TABLE `flagged` (
-  `fid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `reporter_id` int(11) NOT NULL,
-  `reason` mediumtext NOT NULL,
-  `response_level` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -98,9 +87,12 @@ CREATE TABLE `friends` (
 CREATE TABLE `groups` (
   `gid` int(11) NOT NULL,
   `group_name` varchar(50) NOT NULL,
-  `age_restrict` int(11) NOT NULL,
+  `age_restrict` int(11) DEFAULT NULL,
   `category` varchar(100) NOT NULL,
-  `description` mediumtext
+  `description` mediumtext,
+  `visibility` int(11) NOT NULL,
+  `banned_users` mediumtext,
+  `group_profile` mediumtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -119,20 +111,6 @@ CREATE TABLE `group_members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `group_preferences`
---
-
-CREATE TABLE `group_preferences` (
-  `gpid` int(11) NOT NULL,
-  `gid` int(11) NOT NULL,
-  `visibility` int(11) NOT NULL,
-  `banned_users` mediumtext,
-  `group_profile` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `posts`
 --
 
@@ -140,9 +118,8 @@ CREATE TABLE `posts` (
   `pid` int(11) NOT NULL,
   `gid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `aid` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `content` mediumtext NOT NULL,
+  `aid` int(11) NOT NULL DEFAULT '0',
+  `content` mediumtext,
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -216,7 +193,8 @@ ALTER TABLE `attachments`
 ALTER TABLE `chats`
   ADD PRIMARY KEY (`chid`),
   ADD KEY `senderId` (`senderId`),
-  ADD KEY `receiverId` (`receiverId`);
+  ADD KEY `receiverId` (`receiverId`),
+  ADD KEY `aid` (`aid`) USING BTREE;
 
 --
 -- Indexes for table `comments`
@@ -226,13 +204,6 @@ ALTER TABLE `comments`
   ADD KEY `uid` (`uid`),
   ADD KEY `pid` (`pid`),
   ADD KEY `parent_comid` (`parent_comid`);
-
---
--- Indexes for table `flagged`
---
-ALTER TABLE `flagged`
-  ADD PRIMARY KEY (`fid`),
-  ADD KEY `uid` (`uid`);
 
 --
 -- Indexes for table `friends`
@@ -255,13 +226,6 @@ ALTER TABLE `group_members`
   ADD PRIMARY KEY (`gmid`),
   ADD KEY `gid` (`gid`),
   ADD KEY `uid` (`uid`);
-
---
--- Indexes for table `group_preferences`
---
-ALTER TABLE `group_preferences`
-  ADD PRIMARY KEY (`gpid`),
-  ADD KEY `gid` (`gid`);
 
 --
 -- Indexes for table `posts`
@@ -315,12 +279,6 @@ ALTER TABLE `comments`
   MODIFY `comid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `flagged`
---
-ALTER TABLE `flagged`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
@@ -337,12 +295,6 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `group_members`
   MODIFY `gmid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `group_preferences`
---
-ALTER TABLE `group_preferences`
-  MODIFY `gpid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -377,7 +329,8 @@ ALTER TABLE `user_preferences`
 --
 ALTER TABLE `chats`
   ADD CONSTRAINT `chats_ibfk_1` FOREIGN KEY (`senderId`) REFERENCES `users` (`uid`),
-  ADD CONSTRAINT `chats_ibfk_2` FOREIGN KEY (`receiverId`) REFERENCES `users` (`uid`);
+  ADD CONSTRAINT `chats_ibfk_2` FOREIGN KEY (`receiverId`) REFERENCES `users` (`uid`),
+  ADD CONSTRAINT `chats_ibfk_3` FOREIGN KEY (`aid`) REFERENCES `attachments` (`aid`);
 
 --
 -- Constraints for table `comments`
@@ -386,12 +339,6 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `posts` (`pid`),
   ADD CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`parent_comid`) REFERENCES `comments` (`comid`);
-
---
--- Constraints for table `flagged`
---
-ALTER TABLE `flagged`
-  ADD CONSTRAINT `flagged_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
 
 --
 -- Constraints for table `friends`
@@ -406,12 +353,6 @@ ALTER TABLE `friends`
 ALTER TABLE `group_members`
   ADD CONSTRAINT `group_members_ibfk_1` FOREIGN KEY (`gid`) REFERENCES `groups` (`gid`),
   ADD CONSTRAINT `group_members_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
-
---
--- Constraints for table `group_preferences`
---
-ALTER TABLE `group_preferences`
-  ADD CONSTRAINT `group_preferences_ibfk_1` FOREIGN KEY (`gid`) REFERENCES `groups` (`gid`);
 
 --
 -- Constraints for table `posts`
@@ -432,7 +373,7 @@ ALTER TABLE `usersinfo`
 --
 ALTER TABLE `user_preferences`
   ADD CONSTRAINT `user_preferences_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
-
+  
 DELIMITER $$
 --
 -- Events
@@ -440,6 +381,9 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` EVENT `recovery_code_expired` ON SCHEDULE EVERY 1 HOUR STARTS '2019-06-08 21:49:44' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE users
 SET recovery_code = NULL
 where TIMESTAMPDIFF(MINUTE, recovery_code_created,CURRENT_TIMESTAMP) > 60$$
+
+CREATE DEFINER=`root`@`localhost` EVENT `status_reset` ON SCHEDULE EVERY 5 MINUTE STARTS '2019-06-10 19:28:47' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Resets the status to 0[dormant] after every 5 minutes.' DO UPDATE users
+SET status = NULL$$
 
 DELIMITER ;
 COMMIT;
