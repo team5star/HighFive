@@ -1,13 +1,3 @@
-<?php
-require_once("connection.php");
-// Start the session
-session_start();
-if(!isset($_SESSION['user_id']))
-{
- header('location:login.html');
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
    <head>
