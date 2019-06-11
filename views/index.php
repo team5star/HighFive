@@ -2,6 +2,7 @@
 // Start the session
 session_start();
 require_once __DIR__ . "/../controllers/user.php";
+require_once __DIR__ . "/../controllers/group.php";
 if(!isset($_SESSION['uid']))
 {
  header('location:login.php');
