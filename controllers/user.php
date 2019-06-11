@@ -135,7 +135,7 @@ class UserController
     public function generate_recovery_code($email)
     {
         date_default_timezone_set('UTC');
-        $uid = $this->user->get_uid_by_email($email);
+        $uid = $this->get_uid_by_email($email);
         $code = $this->guidv4();
         $timestamp = date("Y-m-d H:i:s");
         if ($this->user->update([
@@ -146,6 +146,41 @@ class UserController
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get the UID of user by username
+     * 
+     * @param string $username Username for which UID is to be found
+     * 
+     * @returns integer|null UID of the username if found, null otherwise
+     */
+    public function get_uid_by_username($username)
+    {
+        $users = $this->user->select_all();
+        foreach ($users as $user) {
+            if ($user['username'] == $username) {
+                return $user['uid'];
+            }
+        }
+        return null;
+    }
+    /**
+     * Get the UID of user by email
+     * 
+     * @param string $email Email for which UID is to be found
+     * 
+     * @returns integer|null UID of the email if found, null otherwise
+     */
+    public function get_uid_by_email($email)
+    {
+        $users = $this->user->select_all();
+        foreach ($users as $user) {
+            if ($user['email'] == $email) {
+                return $user['uid'];
+            }
+        }
+        return null;
     }
     /**
      * GUID generation function for compatibility issues

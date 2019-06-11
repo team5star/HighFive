@@ -20,7 +20,7 @@ class User
      * 
      */
     public function __construct() {
-        $db = (new Database())->get_connection();
+        $this->db = (new Database())->get_connection();
     }
 
     /**
@@ -142,7 +142,7 @@ class User
     {
         $users = $this->select_all();
         foreach ($users as $user) {
-            if ($user['username'] == $username) {
+            if ($user['email'] == $email) {
                 return $user['uid'];
             }
         }
