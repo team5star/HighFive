@@ -6,7 +6,7 @@ require_once __DIR__ . "/../config/connection.php";
  * 
  * This class includes all the CRUD operations including other minor operation.
  */
-class User
+class UserInfoController
 {
     /**
      * @todo Implement Cached functionality to reduce response time
