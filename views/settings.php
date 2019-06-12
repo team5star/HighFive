@@ -224,124 +224,6 @@
                             </ol>
                             <input type="range" class="custom-range" id="customRange" name="visibility_level" min="1" max="4">
                         </form>
-                    </div>
-                    <br>
-                    <br>
-                    <hr>
-                    <br>
-                    <br>
-                    <!-------------------------------PERSONAL PREFERENCES---------------------->
-                    
-                    <!-------------------------------GROUP SETTINGS---------------------------->
-                    <div id="group_settings">
-                        <h3>Group Settings</h3>    
-                        
-                        <h4>Admin Settings</h4>
-                        <form method="post" action="#">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Search Group</span>
-                                </div>
-                                <input type="search" class="form-control" placeholder="Enter Group Name" name="search_group_name"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                        
-                        <h4>Group Picture</h4>
-                        <div class="circle">
-                            <img class="profile-pic" src="#" id="group_pic" align="middle">
-                            <i class="fa fa-user fa-5x" id="temp" style="padding: 15px;"></i> 
-                        </div>
-                        <div class="p-image">
-                            <button class="upload-button btn btn-primary"><span class="fa fa-camera"></span></button>
-                            <form method="post" action="#" enctype="multipart/form-data">
-                            <input class="file-upload" type="file" accept="image/*"/ name="group_pic">
-                            <button type="submit" class="btn btn-primary"><span class="fa fa-cloud-upload"></span></button>
-                            </form>
-                        </div>
-
-                        <script>
-                            $(document).ready(function() {
-                                var readURL = function(input) {
-                                    if (input.files && input.files[0]) {
-                                        var reader = new FileReader();
-
-                                        reader.onload = function (e) {
-                                            document.getElementById("temp").style.padding = "0px";
-                                            document.getElementById("temp").style.display = "none";
-                                            $('.profile-pic').attr('src', e.target.result);
-                                            document.getElementById("group_pic").style.display = "block";
-                                            document.getElementById("group_pic").style.padding = "0px";
-                                            
-                                        }
-                                        reader.readAsDataURL(input.files[0]);
-                                    }
-                                }
-                                $(".file-upload").on('change', function(){
-                                    readURL(this);
-                                });
-                                $(".upload-button").on('click', function() {
-                                   $(".file-upload").click();
-                                });
-                            });
-                        </script>
-                        <br>
-                        
-                        
-                        <form method="post" action="#">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Group Name</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Enter Group Name" value="M^5" name="group_name"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Change</button>
-                                </div>
-                            </div>
-                        </form>
-                        
-                        <div class="card">
-                            <div class="card-header">
-                                <a class="card-link" data-toggle="collapse" href="#banned_users">Users Banned</a>
-                            </div>
-                            <div id="banned_users" class="collapse" data-parent="#group_settings">
-                                <div class="card-body">
-                                    <form method="post" action="#">
-                                        <ul>
-                                            <li class="row">
-                                                <div class="col">Moazzam hammed Paracha</div>
-                                                <div class="col">
-                                                    <button class="btn btn-primary" type="submit" name="un_ban_user" value="Moazzam hammed Paracha">Forgive</button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        
-                        <label for="group_privacy">Privacy Level</label>    
-                        <form method="post" action="#">
-                            <div class="custom-control custom-radio">
-                                <ul>
-                                    <li>
-                                        <input type="radio" class="custom-control-input" id="group_privacy_1" name="group_privacy" value="1">
-                                        <label class="custom-control-label" for="group_privacy_1">Private Group</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" class="custom-control-input" id="group_privacy_2" name="group_privacy" value="2">
-                                        <label class="custom-control-label" for="group_privacy_2">Public Group</label>
-                                    </li>
-                                </ul>
-                            </div> 
-                            
-                        </form>
-                        
-                        <h4>Normal Settings</h4>
-                        
                         <div class="card">
                             <div class="card-header">
                                 <a class="card-link" data-toggle="collapse" href="#groups_muted">Groups Muted</a>
@@ -380,8 +262,11 @@
                     </div>
                     <br>
                     <br>
+                    <hr>
                     <br>
-                    <!-------------------------------GROUP SETTINGS---------------------------->
+                    <br>
+                    <!-------------------------------PERSONAL PREFERENCES---------------------->
+                    
                     
                 </div>
             </div>

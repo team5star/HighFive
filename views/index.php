@@ -29,7 +29,7 @@ if(!isset($_SESSION['uid']))
       <link href="../css/hf_design.css" rel="stylesheet">
    </head>
    <body >
-      <div class="navbar fixed-top bg-white box-shadow py-0">
+      <div class="navbar fixed-top bg-white box-shadow py-0" >
          <nav class="nav nav-underline">
             <div class="container">
                <div class="row">
@@ -63,9 +63,13 @@ if(!isset($_SESSION['uid']))
          </nav>
          <nav class="navbar navbar-inverse  bg-white box-shadow py-0">
             <div class="container-fluid">
-               <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/account.svg" height = 24px  width = 24px></object>
-               </a>
+            <div class="dropdown">
+                  <button class="dropbtn"><img src="../images/svg/account.svg"></button>
+                  <div class="dropdown-content">
+                     <a href="#">User Profile</a>
+                     <form method="POST"><button type="button" class="btn btn-primary text-center">Log Out</button></form>
+                  </div>
+               </div> 
                <a class="nav-link" href="#" data-toggle="modal" data-target="#group_menu">
                   <object type="image/svg+xml" data="../images/svg/group.svg" height = 24px  width = 24px></object>
                   </a>
@@ -73,11 +77,12 @@ if(!isset($_SESSION['uid']))
                <object type="image/svg+xml" data="../images/svg/messages.svg" height = 24px  width = 24px></object>
                </a>
                <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 24px  width = 24px></object>
-               <span class="badge" style=>3</span>   
-               </a> 
+                  <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 18px  width = 18px></object>
+                </a>
+               
                <a class="nav-link" href="#">
-               <object type="image/svg+xml" data="../images/svg/settings.svg"height = 24px  width = 24px></object>
+               <a href="../views/settings.php"><object type="image/svg+xml" data="../images/svg/settings.svg"height = 24px  width = 24px></object></a>
+               
                </a> 
 
 
@@ -542,7 +547,7 @@ if(!isset($_SESSION['uid']))
          </div>
       </div>
       </div>
-      <div class="container-fluid" style="margin-top: 3.2em">
+      <div class="container-fluid" style="margin-top: 4.2em">
          <div class="row">
             <div class="col-sm-0.5" style="margin-left: 0.5em; margin-right: 1em; margin-left: 1em; background-color: #eef7fe;border-right: 2px solid #bfd8e4; border-left: 2px solid #bfd8e4">
                <ul class="nav flex-column px-0 py-2">
