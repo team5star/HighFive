@@ -3,8 +3,6 @@
 session_start();
 require_once __DIR__ . "/../controllers/user.php";
 require_once __DIR__ . "/../controllers/group.php";
-require_once __DIR__ . "/../controllers/chat.php";
-// require_once __DIR__ . "/../models/userinfo.php";
 if(!isset($_SESSION['uid']))
 {
  header('location:login.php');
@@ -71,23 +69,22 @@ if(!isset($_SESSION['uid']))
                      <a href="#">User Profile</a>
                      <form method="POST"><button type="button" class="btn btn-primary text-center">Log Out</button></form>
                   </div>
-               </div> 
-               <a class="nav-link" href="#" data-toggle="modal" data-target="#group_menu">
+            </div> 
+               <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#group_menu">
                   <object type="image/svg+xml" data="../images/svg/group.svg" height = 24px  width = 24px></object>
-                  </a>
-               <a class="nav-link" href="#" data-toggle="modal" data-target="#message_menu">
+                  </a> -->
+                  
+               <a href="../views/group_settings.php"><object type="image/svg+xml" data="../images/svg/group.svg"height = 24px  width = 24px></object></a>
+               
+               <a class="nav-link" data-toggle="modal" data-target="#message_menu">
                <object type="image/svg+xml" data="../images/svg/messages.svg" height = 24px  width = 24px></object>
                </a>
-               <a class="nav-link" href="#">
-                  <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 18px  width = 18px></object>
-                </a>
-               
-               <a class="nav-link" href="#">
+               <!-- <a class="nav-link" href="#">
+                  <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 24px  width = 24px></object>
+                </a> -->
+   
                <a href="../views/settings.php"><object type="image/svg+xml" data="../images/svg/settings.svg"height = 24px  width = 24px></object></a>
-               
-               </a> 
-
-
+            
                <div class="logo">
                   <img src="../images/logo.png" alt="logo" height = 22px  width = 22px class="rounded-circle" style="margin-top:-0.5em; margin-left:0.5em">
                </div>
@@ -390,7 +387,7 @@ if(!isset($_SESSION['uid']))
                   <button type="button" class="close" data-dismiss="message_menu">&times;</button>
                </div>
                <div class="modal-body">
-                  <!-- <a href="#" data-toggle="modal"  data-target="#message_chat"
+                  <a href="#" data-toggle="modal"  data-target="#message_chat"
                      data-dismiss="modal" >
                      <div class = "message_view">
                         <div class = "row">
@@ -407,43 +404,8 @@ if(!isset($_SESSION['uid']))
                            </div>
                         </div>
                         <hr>
-                     </div> 
+                     </div>
                   </a>
-                  -->
-
-                  <?php
-
-                  
-                  $user = new UserController();
-                  $useru = new User();
-                  $u = $useru->select_by_id($_SESSION['uid']);
-                  $username = $u['username'];
-                  $friends = $user->get_friends($username);
-                  print_r($friends);
-                  echo($UserName);
-                  // foreach ($friends as $f) {
-                  //    $temp_uid = $f['uidr'];
-                  //    $temp_user = $user->select_by_id($temp_uid);
-                  //    $temp_user_info = $user_info->select_by_id($temp_uid);
-
-                  //    echo'<a href=#>
-                  //    <div class = "message_view">
-                  //       <div class = "row">
-                  //          <div class = "col-0 comment_pic">
-                  //             <img src="..'.$temp_user_info['profile_pic'].'" alt="logo" height = 30px width = 30px class="rounded-circle">
-                  //          </div>
-                  //          <div class = "col-3">
-                  //             <h5>
-                  //                <strong>'.$temp_user['username'].'</strong>
-                  //             </h5>
-                  //          </div>
-                  //       </div>
-                  //       <hr>
-                  //    </div>
-                  // </a>'.'</br>';
-                  // }
-                  ?>
-
                   <a href=#>
                      <div class = "message_view">
                         <div class = "row">
