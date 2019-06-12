@@ -12,17 +12,30 @@ if(isset($_SESSION['uid'])){
 if(isset($_POST['login'])) {
    login();
 }
-$user = new UserController();
+if(isset($_POST['signup'])){
+   signup();
+}
+if(isset($_POST['send_req'])) {
+   
+   forget_password();
+}
+
+
 $error = '';
 function signup(){
-global $user;
+$user = new UserController();
 $username = $_POST['username'];
 $email = $_POST['email'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 $date = $_POST['date'];
 $gender = $_POST['Gender'];
 if(!($user->email_exists($email) && $user->username_exists($username))){
-   $user->create_account($email,$username,$password,$date,$gender);
+   $user->create_account('ali@gmail.com','ali','ali','1998-02-02','Male');
+   // $user->create_account($email,$username,$password,$date,$gender);
+}
+else{
+   $_SESSION['login_error'] = "Username or email already used";
+   // header("Location: login.php");  
 }
 }
 
@@ -41,6 +54,21 @@ $_SESSION['login_error'] = "Invalid credentials! Can't login.";
 header("Location: login.php");
 }
 }
+function forget_password(){
+
+$user = new UserController();
+$email = $_POST['email_recover'];
+if($user->email_exists($email)) {
+   $rec_code = $user->generate_recovery_code($email);
+   // the message
+$msg =  " This is srecover code for forget password ". $rec_code.'</br>';
+// mail($email,"Recovery Code",$msg);
+}
+else{
+   //Show error alert on same dialog
+}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,7 +169,7 @@ header("Location: login.php");
                                           </div>
                                        </div>
                                        <div class="form-group m-0">
-                                          <button type="submit" class="btn btn-primary btn-block" 
+                                          <button type="submit" class="btn btn-primary btn-block" name="signup"
                                              >Sign Up </button>
                                        </div>
                                     </form>
@@ -166,9 +194,9 @@ header("Location: login.php");
                                        <form method="POST">
                                           <div class="form-group">
                                              <label for="email">Enter e-mail address for password renewal</label>
-                                             <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                             <input type="email" class="form-control" name="email_recover" placeholder="Enter email" required>
                                           </div>
-                                          <button type="submit" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#recovery_pass_modal"
+                                          <button type="button" name="send_req" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#recovery_pass_modal"
                                              data-dismiss="modal">Send request</button>
                                        </form>
                                     </div>
@@ -195,7 +223,7 @@ header("Location: login.php");
                                              <label for="r-code">Please enter the recovery code you have received</label>
                                              <input id="r-code" type="text" class="form-control" name="r-code" value="" required autofocus>
                                           </div>
-                                          <button type="submit" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#new_pass_modal"
+                                          <button type="submit" name="rec_code" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#new_pass_modal"
                                              data-dismiss="modal">Send request</button>
                                        </form>
                                     </div>
