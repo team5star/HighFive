@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . "/controllers/user.php";
+session_start();
+require_once __DIR__ . "/../controllers/user.php";
 extract($_GET);
 $user = new UserController();
 if(isset($username) && $user->username_exists($username)) {
