@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/user.php";
+require_once __DIR__ . "/../models/userinfo.php";
 
 /**
  * Controller for managing Users
@@ -10,13 +11,14 @@ require_once __DIR__ . "/../models/user.php";
 class UserController
 {
     private $user = null;
-
+    private $userinfo = null;
     /**
      * The neccessary constructor
      */
     public function __construct()
     {
         $this->user = new User();
+        $this->userinfo = new UserInfo();
     }
 
     /**
@@ -206,6 +208,14 @@ class UserController
         }
         return null;
     }
+
+    /**
+     * Get information about user by username
+     */
+    public function get_user_profile_by_username($username) {
+
+    }
+
     /**
      * GUID generation function for compatibility issues
      * 

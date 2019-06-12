@@ -1,122 +1,225 @@
-<!DOCTYpe html>
-<html>
-    <head>
-        <title>Profile</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        
-          <style>
-              ul.nav-pills {
-                top: 20px;
-                position: fixed;
-              }
-              
-              .profile-pic {
-                max-width: 200px;
-                max-height: 200px;
-                display: block;
-            }
-            
-            .circle {
-                border-radius: 1000px !important;
-                overflow: hidden;
-                width: 128px;
-                height: 120px;
-                border: 3px solid #0069d9;
-            }
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-            
-              .p-image button{
-                  margin: 5px 10px;
-              }
-              
-            .p-image:hover {
-              transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-            }
-           
-            
-          </style>
-    </head>
+<?php
+require_once __DIR__ . "/controllers/user.php";
+extract($_GET);
+$user = new UserController();
+if(isset($username) && $user->username_exists($username)) {
     
-    <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-        
-        <div class="container-fluid mt-3">
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Full Name - HighFive</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        body {
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        }
+
+        .emp-profile {
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+
+        .profile-img {
+            text-align: center;
+        }
+
+        .profile-img img {
+            /* width: 70%;
+            height: 70%; */
+            width: 16rem;
+            height: 16rem;
+        }
+
+
+        .profile-head h5 {
+            color: #333;
+        }
+
+        .profile-head h6 {
+            color: #0062cc;
+        }
+
+        .profile-friend-btn {
+            border: none;
+            border-radius: 1.5rem;
+            width: 70%;
+            padding: 2%;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+
+        .profile-friends {
+            padding: 14%;
+            margin-top: -15%;
+        }
+
+        .profile-friends p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-friends a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-friends ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container emp-profile">
+        <form method="post">
             <div class="row">
-                <nav class="col-5 col-sm-4 col-md-3 col-lg-3" id="myScrollspy">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#info">User Profile</a>
-                        </li>
-                        
-                  </ul>
-                </nav>
-                
-                <div class="col-7 col-sm-8 col-md-9 col-lg-9">
-                    
-                    <!-------------------------------PERSONAL INFO----------------------------->
-                    <div id="info">
-                        <h3>User Profile</h3>
-                        <form method="post" action="#" enctype="multipart/form-data">
-                            
-                        <h4>Profile Picture</h4>
-                        <div class="circle">
-                            <img class="profile-pic" src="#" id="group_pic" align="middle">
-                            <i class="fa fa-user fa-5x" id="temp" style="padding: 15px;"></i> 
-                        </div>
-                        <br>
-                            
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="First Name" name="first_name" readonly/>
-                                <input type="text" class="form-control" placeholder="Last Name" name="last_name"/ readonly>
-                            </div>
-
-                            <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                            <span class="input-group-text">Current City</span>
-                                        </div>
-                                <input type="text" class="form-control" placeholder="Current City" name="current_city" readonly/>
-                                
-                            </div>
-
-                            <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                            <span class="input-group-text">Home Town</span>
-                                        </div>
-                                    
-                                    <input type="text" class="form-control" placeholder="Home Town" name="home_town"/ readonly>
-                            </div>
-
-                            <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Occupation</span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Occupation" name="occupation" readonly/>
-                                </div>
-
-                            <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </div>
-                                    <textarea type="text" class="form-control" placeholder="About" name="username" rows="1" readonly></textarea>
-                                </div>
-                        </form>
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img class="rounded-circle" src="https://avatars1.githubusercontent.com/u/29598866?s=400&v=4" alt="cstayyab" />
                     </div>
-                    <br>
-                    <br>
-                    <hr>
-                    <br>
-                    <br>
-                    
-                </div>     
-                    
-        </div>
-    </body>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            Muhammad Tayyab Sheikh
+                        </h5>
+                        <h6>
+                            Web Developer and Designer
+                        </h6>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="button" class="btn btn-primary" name="btnAddFriend" value="Add Friend" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-friends">
+                        <p>FRIENDS LIST</p>
+                        <a href="">Majid Khan Burki</a><br />
+                        <a href="">Moazzam Hameed Paracha</a><br />
+                        <a href="">Muhammad Ali Jaffery</a><br />
+                        <a href="">Mubariz Shuaib</a><br />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Username</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>cstayyab</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Muhammad Tayyab Sheikh</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email Address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>cstayyab@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Home Town</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Rawalpindi, Pakistan</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Current City</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Rawalpindi, Pakistan</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Occupation</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Web Developer and Designer</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Experience</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Expert</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Hourly Rate</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>10$/hr</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Total Projects</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>230</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>English Level</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Expert</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Availability</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>6 months</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Your Bio</label><br />
+                                    <p>Your detail description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
 </html>

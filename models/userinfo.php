@@ -6,7 +6,7 @@ require_once __DIR__ . "/../config/connection.php";
  * 
  * This class includes all the CRUD operations including other minor operation.
  */
-class User
+class UserInfo
 {
     /**
      * @todo Implement Cached functionality to reduce response time
@@ -113,5 +113,15 @@ class User
         $sql = "UPDATE `$this->tbl` SET $fieldlist WHERE `$this->primary` = $id";
         $q = $this->db->prepare($sql);
         return $q->execute($vals);
+    }
+    /**
+     * Get ufid (primary key) using UID (foreign key)
+     * 
+     * @param integer $uid UID of the user
+     * @returns integer ufid of the user
+     */
+    public function get_ufid_by_uid($uid) {
+        $query = "SELECT ufid FROM `$this->tbl` WHERE uid=$uid";
+        return $this->db->query($query, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC)['ufid'];
     }
 }
