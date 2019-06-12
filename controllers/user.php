@@ -149,6 +149,30 @@ class UserController
     }
 
     /**
+     * Function to verify the recovery code entered by user
+     * 
+     * @param string $email Email address of the user to recover
+     * 
+     * @param string $code Recovery code provided by the user
+     * 
+     * @returns boolean Returns true if code in matched false otherwise
+     */
+    function verify_recovery_code($email, $code)
+    {
+        $users = $this->user->select_all();
+        foreach ($users as $user) {
+            if ($user['email'] == $email) {
+                if ($user["recovery_code"] == $code) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Get the UID of user by username
      * 
      * @param string $username Username for which UID is to be found
