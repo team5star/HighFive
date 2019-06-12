@@ -592,8 +592,46 @@ if(!isset($_SESSION['uid']))
                <br>
                <br>
             </div>
-            <div class="col-sm-0.5" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4;">
-               <ul class="nav flex-column px-0 py-2">
+            <div class="col" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4; -ms-flex: 0 0 230px;  flex: 0 0 230px;">
+            <div class ="group_info">
+                  <div class="row">
+                     <div class="col" >
+                        <h5><strong>Ben 10 Lovers</strong></h5>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <p>A place for the most elite and awesome Ben 10 fans to gather.</p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Members: <strong>5</strong></div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Moderator(s):</div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-1"><img src="images/friend_pics/sigma.jpg" alt="logo" height = 18px width = 18px class="rounded-circle"></div>
+                     <div class="col" style="color: #17729d">Sigma
+                     </div>
+                  </div>
+                  <div class="row"  style="margin-top:0.5em">
+                     <div class="col-sm-5" style="margin-top:0.5em">
+                        <button class="button joined">Joined</button>
+                     </div>
+                     <div class="col-sm-2">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="images/svg/notifications.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                     <div class="col">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="images/svg/message_group.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <ul class="nav flex-column px-0 py-2" style="margin-top: 2em">
                  
                   <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em"><strong> <i>#Groups for you</i></strong></h4>
 
