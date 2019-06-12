@@ -66,20 +66,314 @@ if(!isset($_SESSION['uid']))
                <a class="nav-link" href="#">
                <object type="image/svg+xml" data="../images/svg/account.svg" height = 24px  width = 24px></object>
                </a>
+               <a class="nav-link" href="#" data-toggle="modal" data-target="#group_menu">
+                  <object type="image/svg+xml" data="../images/svg/group.svg" height = 24px  width = 24px></object>
+                  </a>
                <a class="nav-link" href="#" data-toggle="modal" data-target="#message_menu">
                <object type="image/svg+xml" data="../images/svg/messages.svg" height = 24px  width = 24px></object>
                </a>
                <a class="nav-link" href="#">
                <object type="image/svg+xml" data="../images/svg/notifications.svg" height = 24px  width = 24px></object>
-               </a>
+               <span class="badge" style=>3</span>   
+               </a> 
                <a class="nav-link" href="#">
                <object type="image/svg+xml" data="../images/svg/settings.svg"height = 24px  width = 24px></object>
                </a> 
+
+
                <div class="logo">
                   <img src="../images/logo.png" alt="logo" height = 22px  width = 22px class="rounded-circle" style="margin-top:-0.5em; margin-left:0.5em">
                </div>
             </div>
          </nav>
+      </div>
+      <div class="modal" id="group_menu">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title"><strong>Your Groups</strong></h5>
+                  <button type="button" class="close" data-dismiss="message_menu">&times;</button>
+               </div>
+               <div class="modal-body">
+                     <div class = "row">
+                           <button type="button" class="btn btn-primary text-center" data-toggle="modal"
+                           data-dismiss="modal" data-target="#create_group">Create New Group</button>
+                        </div>
+                        <hr>
+                        <div class = "row">
+                           <div class = "col-0 comment_pic">
+                              <img src="../images/group_icons/monkey.jpg" alt="logo" height = 30px width = 30px  class="rounded">
+                           </div>
+                           <div class = "col-4" style="text-align: center">
+                              <p> 
+                                 <strong>Oy it da Monks</strong>
+                              </p>
+                           </div>
+                           <div class = "col-5">
+                              <p>
+                                 Oyy dis da groups for the maddest monks!!?!?
+                              </p>
+                           </div>
+                           <div class = "col-1">
+                              <a class="nav-link" a href="#" data-toggle="modal"  data-target="#group_edit"
+                              data-dismiss="modal" >
+                                 <object type="image/svg+xml" data="../images/svg/settings.svg" height = 24px  width = 24px></object>
+                             </a>
+                           </div>
+                        </div>
+                        <hr>
+                        <div class = "row">
+                              <div class = "col-0 comment_pic">
+                                 <img src="../images/group_icons/cat.jpg" alt="logo" height = 30px width = 30px  class="rounded">
+                              </div>
+                              <div class = "col-4" style="text-align: center">
+                                 <p> 
+                                    <strong>Cat Hype Squad</strong>
+                                 </p>
+                              </div>
+                              <div class = "col-5">
+                                 <p>
+                                    Kewwwttttt Kiiiitts :3
+                                 </p>
+                              </div>
+                              <div class = "col-1">
+                                 <a class="nav-link" a href="#" data-toggle="modal"  data-target="#group_edit"
+                                 data-dismiss="modal" >
+                                    <object type="image/svg+xml" data="../images/svg/settings.svg" height = 24px  width = 24px></object>
+                                </a>
+                              </div>
+                           </div>
+                        <hr>
+                  
+               </div>
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>    
+      <div class="modal" id="create_group">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title"><strong>Group Settings</strong></h5>
+                  <button type="button" class="close" data-dismiss="message_menu">&times;</button>
+               </div>
+               <div class="modal-body">
+                     <form method="POST">
+                     <div class = "message_view">
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Group Name</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                          <input id="name" type="text" class="form-control" name="name" value="" required autofocus>
+                                       </div>
+                                 </div>
+                              </div>
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Group Profile</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                          <table>
+                                             <tr>
+
+                                                <td><input type="file" name="pic" accept="image/*"></td>
+                                                <td width="200"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload</button></td>
+                                                <td>
+                                                      <img src = "" height = 50px width = 50px class="rounded">
+                                                </td>
+                                             </tr>
+                                          </table>
+  
+                                       </div>
+                                 </div>
+                              </div>
+                        <div class = "row">
+                              <div class = "col-4">
+                                 <h5>
+                                    <strong>Group Category</strong>
+                                 </h5>
+                              </div>
+                              <div class = "col">
+                                    <div class="form-group">
+                                       <input id="category" type="text" class="form-control" name="category" value="" required autofocus>
+                                    </div>
+                              </div>
+                           </div>
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Group Desc.</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                          <textarea id="desc" row=3 class="form-control" name="desc" value="" required autofocus></textarea>
+                                       </div>
+                                 </div>
+                              </div>
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Visibility</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                             <div class="row">
+                                                <div class="col"><input type="radio" name="visibility" value="Public">Public</div>
+                                                <div class="col"><input type="radio" name="visibility" value="Private">Private</div>
+                                             </div>
+                                          </div>
+                                 </div>
+                                 <button type="submit" class="btn btn-success">Submit</button>
+                              </div>
+                     </div>
+                  </form>
+               </div>
+               <div style="margin-left: 9em;">
+                     <button type="button" class="btn btn-danger" data-toggle="modal"  data-target="#group_menu"
+                        data-dismiss="modal">Go Back</button>
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+            </div>
+         </div>
+         </div>        
+      <div class="modal" id="group_edit">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title"><strong>Group Settings</strong></h5>
+                  <button type="button" class="close" data-dismiss="message_menu">&times;</button>
+               </div>
+               <div class="modal-body">
+                     <form method="POST">
+                     <div class = "message_view">
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Group Profile</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                          <table>
+                                             <tr>
+
+                                                <td><input type="file" name="pic" accept="image/*"></td>
+                                                <td width="200"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Upload</button></td>
+                                                <td>
+                                                      <img src = "" height = 50px width = 50px class="rounded">
+                                                </td>
+                                             </tr>
+                                          </table>
+  
+                                       </div>
+                                 </div>
+                              </div>
+                           <div class = "row">
+                           <div class = "col-4">
+                              <h5>
+                                 <strong>Group Desc.</strong>
+                              </h5>
+                           </div>
+                           <div class = "col">
+                                 <div class="form-group">
+                                    <input id="desc" type="text" class="form-control" name="desc" value="" required autofocus>
+                                 </div>
+                           </div>
+                        </div>
+                        <div class = "row">
+                              <div class = "col-4">
+                                 <h5>
+                                    <strong>Group Category</strong>
+                                 </h5>
+                              </div>
+                              <div class = "col">
+                                    <div class="form-group">
+                                       <input id="category" type="text" class="form-control" name="category" value="" required autofocus>
+                                    </div>
+                              </div>
+                           </div>
+                           <div class = "row">
+                                 <div class = "col-4">
+                                    <h5>
+                                       <strong>Visibility</strong>
+                                    </h5>
+                                 </div>
+                                 <div class = "col">
+                                       <div class="form-group">
+                                             <div class="row">
+                                                <div class="col"><input type="radio" name="visibility" value="Public">Public</div>
+                                                <div class="col"><input type="radio" name="visibility" value="Private">Private</div>
+                                             </div>
+                                          </div>
+                                 </div>
+                              </div>
+                              <div class = "row">
+                                    <div class = "col-4">
+                                       <h5>
+                                          <strong>Banned Users</strong>
+                                       </h5>
+                                    </div>
+                                    <div class = "col">
+                                          <div class="form-group">
+                                                <div class="row">
+                                                      <div class="form-group">
+                                                         <label>Please enter user you wish to ban.</label>
+                                                            <input id="desc" type="text" class="form-control" name="desc" value="" required autofocus>
+                                                         </div>
+                                                </div>
+                                             </div>
+                                    </div>
+                                 </div>
+                                 <div class = "row">
+                                       <div class = "col-4">
+                                          <h5>
+                                             <strong>Banned Users List</strong>
+                                          </h5>
+                                       </div>
+                                       <div class = "col">
+                                             <div class="form-group">
+                                                   <div class="row">
+                                                         <form method="post" action="#">
+                                                               <ul>
+                                                                   <li class="row">
+                                                                       <div class="col">Pintu</div>
+                                                                       <div class="col">
+                                                                           <button class="btn btn-primary" type="submit" name="un_ban_user" value="Moazzam hammed Paracha">Forgive</button>
+                                                                       </div>
+                                                                   </li>
+                                                                   <br>
+                                                                   <li class="row">
+                                                                        <div class="col">Amitah Bachan</div>
+                                                                        <div class="col">
+                                                                            <button class="btn btn-primary" type="submit" name="un_ban_user" value="Moazzam hammed Paracha">Forgive</button>
+                                                                        </div>
+                                                                    </li>
+                                                               </ul>
+                                                           </form>
+                                                   </div>
+                                                </div>
+                                       </div>
+                                    </div>
+ 
+                     </div>
+                  </form>
+               </div>
+               <div style="margin-left: 9em;">
+                     <button type="button" class="btn btn-danger" data-toggle="modal"  data-target="#group_menu"
+                        data-dismiss="modal">Go Back</button>
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+            </div>
+         </div>
       </div>
       <div class="modal" id="message_menu">
          <div class="modal-dialog">
@@ -611,7 +905,7 @@ if(!isset($_SESSION['uid']))
                      <div class="col" style="color: #17729d">Moderator(s):</div>
                   </div>
                   <div class="row">
-                     <div class="col-sm-1"><img src="images/friend_pics/sigma.jpg" alt="logo" height = 18px width = 18px class="rounded-circle"></div>
+                     <div class="col-sm-1"><img src="../images/friend_pics/sigma.jpg" alt="logo" height = 18px width = 18px class="rounded-circle"></div>
                      <div class="col" style="color: #17729d">Sigma
                      </div>
                   </div>
@@ -621,18 +915,18 @@ if(!isset($_SESSION['uid']))
                      </div>
                      <div class="col-sm-2">
                         <a class="nav-link" href="#">
-                        <object type="image/svg+xml" data="images/svg/notifications.svg" height = 18px  width = 18px></object>
+                        <object type="image/svg+xml" data="../images/svg/notification.svg" height = 18px  width = 18px></object>
                         </a>
                      </div>
                      <div class="col">
                         <a class="nav-link" href="#">
-                        <object type="image/svg+xml" data="images/svg/message_group.svg" height = 18px  width = 18px></object>
+                        <object type="image/svg+xml" data="../images/svg/message_group.svg" height = 18px  width = 18px></object>
                         </a>
                      </div>
                   </div>
                </div>
                <ul class="nav flex-column px-0 py-2" style="margin-top: 2em">
-                 
+                   
                   <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em"><strong> <i>#Groups for you</i></strong></h4>
 
                      <li class="nav-item">
