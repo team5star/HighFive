@@ -114,4 +114,14 @@ class UserPreference
         $q = $this->db->prepare($sql);
         return $q->execute($vals);
     }
+    /**
+     * Get upid (primary key) using UID (foreign key)
+     * 
+     * @param integer $uid UID of the user
+     * @returns integer upid of the user
+     */
+    public function get_upid_by_uid($uid) {
+        $query = "SELECT upid FROM `$this->tbl` WHERE uid=$uid";
+        return $this->db->query($query, PDO::FETCH_ASSOC)->fetch(PDO::FETCH_ASSOC)['upid'];
+    }
 }
