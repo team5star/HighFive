@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../models/user.php";
+require_once __DIR__ . '/../models/friend.php';
 
 /**
  * Controller for managing Users
@@ -10,6 +11,7 @@ require_once __DIR__ . "/../models/user.php";
 class UserController
 {
     private $user = null;
+    private $friend = null;
 
     /**
      * The neccessary constructor
@@ -17,6 +19,7 @@ class UserController
     public function __construct()
     {
         $this->user = new User();
+        $this->friend = new Friend();
     }
 
     /**
@@ -181,6 +184,46 @@ class UserController
             }
         }
         return null;
+    }
+    public function get_username_by_uid($uid){
+        $users = $this->user->select_all();
+        foreach($users as $user){
+            if($user['uid'] == $uid){
+                return $user['username'];
+            }
+        }
+        return null;
+    }
+    public function unfriend($username){
+        $uid = $this->user->get_uid_by_username($username);
+        return $this->friend->delete($uid);
+    }
+    public function add_friend($l_user,$r_user){
+        $l_uid = $this->user->get_uid_by_username($l_user);
+        $r_uid = $this->user->get_uid_by_username($r_user);
+        return $this->friend->insert(["uidr"=>$r_uid, "uidl" => $l_uid]);
+    }
+     
+    public function get_friends($username){
+        $uid = $this->user->get_uid_by_username($username);
+        $user_friends = array();
+        $friends = $this->friend->select_all();
+
+        foreach ($friends as $f) {
+            if($f['uidr'] == $uid){
+                $user_friends[] = $f;
+                
+            }
+        }
+        if(empty($user_friends)){
+            echo'user friends is not working'.'</br>';
+        }
+        else{
+            echo'user friends is working'.'</br>';
+            
+        }
+        return $user_friends;
+
     }
     /**
      * GUID generation function for compatibility issues

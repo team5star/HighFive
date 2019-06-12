@@ -3,6 +3,8 @@
 session_start();
 require_once __DIR__ . "/../controllers/user.php";
 require_once __DIR__ . "/../controllers/group.php";
+require_once __DIR__ . "/../controllers/chat.php";
+// require_once __DIR__ . "/../models/userinfo.php";
 if(!isset($_SESSION['uid']))
 {
  header('location:login.php');
@@ -388,7 +390,7 @@ if(!isset($_SESSION['uid']))
                   <button type="button" class="close" data-dismiss="message_menu">&times;</button>
                </div>
                <div class="modal-body">
-                  <a href="#" data-toggle="modal"  data-target="#message_chat"
+                  <!-- <a href="#" data-toggle="modal"  data-target="#message_chat"
                      data-dismiss="modal" >
                      <div class = "message_view">
                         <div class = "row">
@@ -405,8 +407,43 @@ if(!isset($_SESSION['uid']))
                            </div>
                         </div>
                         <hr>
-                     </div>
+                     </div> 
                   </a>
+                  -->
+
+                  <?php
+
+                  
+                  $user = new UserController();
+                  $useru = new User();
+                  $u = $useru->select_by_id($_SESSION['uid']);
+                  $username = $u['username'];
+                  $friends = $user->get_friends($username);
+                  print_r($friends);
+                  echo($UserName);
+                  // foreach ($friends as $f) {
+                  //    $temp_uid = $f['uidr'];
+                  //    $temp_user = $user->select_by_id($temp_uid);
+                  //    $temp_user_info = $user_info->select_by_id($temp_uid);
+
+                  //    echo'<a href=#>
+                  //    <div class = "message_view">
+                  //       <div class = "row">
+                  //          <div class = "col-0 comment_pic">
+                  //             <img src="..'.$temp_user_info['profile_pic'].'" alt="logo" height = 30px width = 30px class="rounded-circle">
+                  //          </div>
+                  //          <div class = "col-3">
+                  //             <h5>
+                  //                <strong>'.$temp_user['username'].'</strong>
+                  //             </h5>
+                  //          </div>
+                  //       </div>
+                  //       <hr>
+                  //    </div>
+                  // </a>'.'</br>';
+                  // }
+                  ?>
+
                   <a href=#>
                      <div class = "message_view">
                         <div class = "row">
