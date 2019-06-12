@@ -1,16 +1,28 @@
 <?php
 session_start();
 require_once __DIR__ . "/../controllers/user.php";
-extract($_GET);
 $user = new UserController();
-if(isset($username) && $user->username_exists($username)) {
-    
+if (isset($_SESSION['username']) && isset($_GET['friend'])) {
+    die(json_encode(["success" => $user->make_friend($_SESSION['username'], $_GET['friend'])]));
+}
+if (isset($_SESSION['username']) && isset($_GET['unfriend'])) {
+    die(json_encode(["success" => $user->unfriend($_SESSION['username'], $_GET['unfriend'])]));
+}
+$userinfo = [];
+extract($_GET);
+if (isset($username) && $user->username_exists($username)) {
+    $userinfo = $user->get_user_profile_by_username($username, true);
+} else if (isset($_SESSION['username'])) {
+    $userinfo = $user->get_user_profile_by_username($_SESSION['username'], true);
+} else {
+    header("location: login.php");
 }
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>My Full Name - HighFive</title>
+    <title><?php echo $userinfo['firstname']; ?> - HighFive</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -89,131 +101,120 @@ if(isset($username) && $user->username_exists($username)) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img class="rounded-circle" src="https://avatars1.githubusercontent.com/u/29598866?s=400&v=4" alt="cstayyab" />
+                        <img class="rounded-circle" src="../images/profile_pics/<?php echo $userinfo['profile_pic']; ?>" alt="<?php echo $userinfo['username']; ?>" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
-                            Muhammad Tayyab Sheikh
+                            <?php echo $userinfo['firstname']; ?>
                         </h5>
                         <h6>
-                            Web Developer and Designer
+                            <?php echo $userinfo['occupation']; ?>
                         </h6>
+                        <p>
+                            <?php echo $userinfo['about']; ?>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <input type="button" class="btn btn-primary" name="btnAddFriend" value="Add Friend" />
+                    <?php if (isset($_SESSION['username']) && $userinfo['username'] != $_SESSION['username']) {
+                        if ($user->are_friends($_SESSION['username'], $userinfo['username']) == false) { ?>
+                            <input type="button" class="btn btn-primary" id="btnAddFriend" name="btnAddFriend" value="Add Friend" />
+                            <script>
+                                $(() => {
+                                            $('#btnAddFriend').click(() => {
+                                                    $.getJSON("profile.php?friend=<?php echo $userinfo['username']; ?>", (data) => {
+                                                        if (data.success) {
+                                                            window.location.reload();
+                                                        }
+                                                    })
+                                                })
+                                            });
+                            </script>
+                        <?php } else { ?>
+                            <input type="button" class="btn btn-success" id="btnUnFriend" name="btnUnFriend" value="Friend" style="width: 10em;" />
+                            <script>
+                                $(() => {
+                                    $('#btnUnFriend').mouseenter(() => {
+                                        $('#btnUnFriend').toggleClass('btn-success');
+                                        $('#btnUnFriend').toggleClass('btn-danger');
+                                        $('#btnUnFriend').val("Unfriend");
+                                    })
+                                });
+                                $(() => {
+                                    $('#btnUnFriend').mouseleave(() => {
+                                        $('#btnUnFriend').toggleClass('btn-success');
+                                        $('#btnUnFriend').toggleClass('btn-danger');
+                                        $('#btnUnFriend').val("Friend");
+                                    })
+                                });
+                                $(() => {
+                                    $('#btnUnFriend').click(() => {
+                                        $.getJSON("profile.php?unfriend=<?php echo $userinfo['username']; ?>", (data) => {
+                                            if (data.success) {
+                                                window.location.reload();
+                                            }
+                                        })
+                                    })
+                                });
+                            </script>
+
+                        <?php }
+                } ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-friends">
                         <p>FRIENDS LIST</p>
-                        <a href="">Majid Khan Burki</a><br />
-                        <a href="">Moazzam Hameed Paracha</a><br />
-                        <a href="">Muhammad Ali Jaffery</a><br />
-                        <a href="">Mubariz Shuaib</a><br />
+                        <?php
+                        foreach ($userinfo['friends'] as $friend) {
+                            echo '<a href="profile.php?username=' . $friend['username'] . '">' . $friend['firstname'] . ' ' . $friend['lastname'] . '</a><br/>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="tab-content profile-tab" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Username</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>cstayyab</p>
-                                </div>
+                    <div class="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Name</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Muhammad Tayyab Sheikh</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Email Address</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>cstayyab@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Home Town</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Rawalpindi, Pakistan</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Current City</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Rawalpindi, Pakistan</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Occupation</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Web Developer and Designer</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userinfo['username']; ?></p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Experience</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Hourly Rate</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>10$/hr</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userinfo['firstname'] . " " . $userinfo['lastname']; ?></p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Total Projects</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>230</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email Address</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>English Level</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Expert</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userinfo['email']; ?></p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Availability</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>6 months</p>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Home Town</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Your Bio</label><br />
-                                    <p>Your detail description</p>
-                                </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userinfo['home_town']; ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Current City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><?php echo $userinfo['current_city']; ?></p>
                             </div>
                         </div>
                     </div>
