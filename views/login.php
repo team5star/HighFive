@@ -12,6 +12,10 @@ if(isset($_SESSION['uid'])){
 if(isset($_POST['login'])) {
    login();
 }
+if(isset($_POST['login'])) {
+   login();
+}
+//testing
 $user = new UserController();
 $error = '';
 function signup(){
