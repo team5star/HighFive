@@ -325,7 +325,7 @@ class UserController
     }
     public function update_account_names($first_name,$last_name,$uid){
 
-        return $this->user_info->update([
+        return $this->userinfo->update([
 
             "firstname"=>$first_name,
 
@@ -337,7 +337,7 @@ class UserController
 
     public function update_account_cities($current_city,$home_town,$uid){
 
-        return $this->user_info->update([
+        return $this->userinfo->update([
 
             "current_city"=>$current_city,
 
@@ -349,7 +349,7 @@ class UserController
 
     public function update_account_occupation($occupation,$uid){
 
-        return $this->user_info->update([
+        return $this->userinfo->update([
 
             "occupation" => $occupation
 
@@ -359,7 +359,7 @@ class UserController
 
     public function update_account_about($about,$uid){
 
-        return $this->user_info->update([
+        return $this->userinfo->update([
 
             "about" => $about
 
@@ -369,7 +369,7 @@ class UserController
 
     public function get_first_name_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
@@ -389,7 +389,7 @@ class UserController
 
     public function get_last_name_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
@@ -413,7 +413,7 @@ class UserController
 
     public function get_current_city_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
@@ -435,7 +435,7 @@ class UserController
 
     public function get_home_town_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
@@ -457,7 +457,7 @@ class UserController
 
     public function get_occupation_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
@@ -479,7 +479,7 @@ class UserController
 
     public function get_about_by_uid($uid){
 
-        $users = $this->user_info->select_all();
+        $users = $this->userinfo->select_all();
 
         foreach ($users as $user) {
 
