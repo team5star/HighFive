@@ -106,7 +106,8 @@ adding_values();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/hf_design.css" />
           <style>
               ul.nav-pills {
                 top: 20px;
@@ -153,16 +154,68 @@ adding_values();
     </head>
     
     <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-        
+    <div class="navbar fixed-top bg-white box-shadow py-0">
+        <nav class="nav nav-underline">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <!-- <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width: auto; height: auto;">
+                                    <span id="search_concept" style="font-size: 15px">Search by</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <div style="margin-left: 1em;">
+                                        <li><a href="#Posts">Posts</a></li>
+                                        <li><a href="#Groups">Groups</a></li>
+                                        <li><a href="#Friends">Friends</a></li>
+                                        <li>
+                                            <hr>
+                                        </li>
+                                        <li><a href="#all">All</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <form class="form-inline my-2 my-lg-0" style="float: right">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success btn-rounded btn-sm my-0" type="submit">Search</button>
+                            </form>
+                        </div> -->
+                        <h3>User Settings - HighFive</h3>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-inverse  bg-white box-shadow py-0">
+            <div class="container-fluid">
+                <a class="nav-link" href="profile.php">
+                    <!-- <object type="image/svg+xml" data="../images/svg/account.svg" height=24px width=24px></object> -->
+                    <i class="fas fa-user-circle fa-2x"></i>
+                </a>
+                <a class="nav-link" href="chat.php">
+                    <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
+                    <i class="far fa-comment-dots fa-2x"></i>
+                </a>
+                <a class="nav-link" href="settings.php">
+                    <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
+                    <i class="fas fa-cog fa-2x"></i>
+                </a>
+                <!-- <a class="nav-link" href="#">
+                    <object type="image/svg+xml" data="../images/svg/notifications.svg" height=24px width=24px></object>
+                </a>
+                <a class="nav-link" href="#">
+                    <object type="image/svg+xml" data="../images/svg/settings.svg" height=24px width=24px></object>
+                </a> -->
+                <div class="logo">
+                    <a href="index.php"><img src="../images/logo.png" alt="logo" class="rounded-circle" style="width:48px; height:48px;"></a>
+                </div>
+            </div>
+        </nav>
+    </div>
         <div class="container-fluid mt-3">
             <div class="row">
-                <nav class="col-5 col-sm-4 col-md-3 col-lg-3" id="myScrollspy">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#info">Personal Info</a>
-                        </li>
-                  </ul>
-                </nav>
+                
                 
                 <div class="col-7 col-sm-8 col-md-9 col-lg-9">
                     
