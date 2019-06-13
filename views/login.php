@@ -34,7 +34,7 @@ function signup(){
 $user = new UserController();
 $username = $_POST['username'];
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 $date = $_POST['date'];
 $gender = $_POST['Gender'];
 if(!($user->email_exists($email) && $user->username_exists($username))){
@@ -59,7 +59,7 @@ else{
 function login() {
 $user = new UserController();
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 if($user->verify_login_via_email($email,$password)) {
    unset($_SESSION['login_error']);
    $_SESSION['uid'] = $user->get_uid_by_email($email);
