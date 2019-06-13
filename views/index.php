@@ -248,411 +248,229 @@ if(!isset($_SESSION['uid']))
          </div>
       </div>
       </div>
-      <div class="container-fluid" style="margin-top: 3.2em">
+      <div class="container-fluid" style="margin-top: 4.2em" id="moazzam">
+          
+<!-----------------------------------------group name heading----------------------------------------------------->
+          <div align=center><h1 id="group_name"><?php
+              if(isset($_GET['gn'])){
+                  echo $_GET['gn'];
+              }
+              ?></h1>
+          </div>
+<!---------------------------------------------------------------------------------------------------------------->
+          
          <div class="row">
+             
+<!--------------------------------------------left nav bar------------------------------------------------------->
             <div class="col-sm-0.5" style="margin-left: 0.5em; margin-right: 1em; margin-left: 1em; background-color: #eef7fe;border-right: 2px solid #bfd8e4; border-left: 2px solid #bfd8e4">
                <ul class="nav flex-column px-0 py-2">
                  
                   <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em">Groups</h4>
-                  <li class="nav-item" >
+                   <?php
+                   require_once dirname(__DIR__) . "\controllers\group.php";
+                   
+                   $gc = new GroupController();
+                   $joined_groups = $gc->get_joined_groups($_SESSION['uid']);
+                   
+                   foreach($joined_groups as $jp){
+                       echo '<li class="nav-item" >
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "../images/group_icons/ben10.png" height = 30px width = 30px class="rounded"></td>
+                              <td><img src = "'.$jp['group_profile'].'" height = 30px width = 30px class="rounded"></td>
                               <td>
-                                 <h5>Ben 10 Lovers</h5>
+                                 <h5><a href="index.php?gn='.$jp['group_name'].'">'.$jp['group_name'].'</a></h5>
                               </td>
                            </tr>
                         </table>
                      </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">
-                        <table class="group_label">
-                           <tr>
-                              <td><img src = "../images/group_icons/cat.jpg" height = 30px width = 30px class="rounded"></td>
-                              <td>
-                                 <h5>Cat Hype Squad</h5>
-                              </td>
-                           </tr>
-                        </table>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">
-                        <table class="group_label">
-                           <tr>
-                              <td><img src = "../images/group_icons/dc.png" height = 30px width = 30px class="rounded"></td>
-                              <td>
-                                 <h5>DC Nigs onlyyyy</h5>
-                              </td>
-                           </tr>
-                        </table>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">
-                        <table class="group_label">
-                           <tr>
-                              <td><img src = "../images/group_icons/monkey.jpg" height =30px width = 30px class="rounded"></td>
-                              <td>
-                                 <h5>Oy it da Monks</h5>
-                              </td>
-                           </tr>
-                        </table>
-                     </a>
-                  </li>
+                  </li>';
+                   }
+                   
+                   ?>
                   <li>
                      <hr style = "border: 1px solid antiquewhite; border-radius: 2px; width: auto;">
                   </li>
                   <h4 style="align-self: center; font-size: 18px; color: black;">Members</h4>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#">
-
-                        <div class="row">
-                              <div class="col-sm-1">
-                                    <img src="../images/friend_pics/orton.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                              </div>
-                              <div class="col" >
-                                 <div class="row group_label">
-                                       <div class="col" ><h5>Randy Orton</h5></div>
-                                 </div>
-                                 <div class="row" style="margin-top: -1em; margin-left: 1em">
-                                       <object type="image/svg+xml" data="../images/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
-                                       <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
-                                    </div>
-                              </div>
-                           </div>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                        <a class="nav-link" href="#">
-   
-                           <div class="row">
-                                 <div class="col-sm-1">
-                                       <img src="../images/friend_pics/sigma.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                 </div>
-                                 <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" ><h5>Sigma</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1em">
-                                          <object type="image/svg+xml" data="../images/svg/online.png" height = 10px  width = 7px style="margin-top:0.4em;"></object>
-                                          <h5 style="font-size: 12px; margin-left: 0.4em; margin-top: 0.3em">Online</h5>
-                                       </div>
-                                 </div>
-                              </div>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                           <a class="nav-link" href="#">
-      
-                              <div class="row">
-                                    <div class="col-sm-1">
-                                          <img src="../images/friend_pics/zambino.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                    </div>
-                                    <div class="col" >
-                                       <div class="row group_label">
-                                             <div class="col" ><h5>Zambino</h5></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                           </a>
-                        </li>
-                        <li class="nav-item">
-                              <a class="nav-link" href="#">
+                   <?php
+                   require_once dirname(__DIR__) . "\controllers\group.php";
+                   $gc = new GroupController();
+                   if(isset($_GET['gn'])){
+                   $members = $gc->get_joined_members($_GET['gn']);
+                   
+                   foreach($members as $mem){
+                       $u_info = $gc->get_user_info_data($mem['uid']);
+                       echo '<li class="nav-item">
+                              <a class="nav-link" href="profile.php?uid='.$mem['username'].'">
          
                                  <div class="row">
                                        <div class="col-sm-1">
-                                             <img src="../images/friend_pics/gandhi.jpg" alt="logo" height = 30px width = 30px class="rounded-circle">
+                                             <img src="'.$u_info['profile_pic'].'" alt="logo" height = 30px width = 30px class="rounded-circle">
                                        </div>
                                        <div class="col" >
                                           <div class="row group_label">
-                                                <div class="col" ><h5>Mahatma Gandhi</h5></div>
+                                                <div class="col" ><h5>'.$mem['username'].'</h5></div>
                                           </div>
                                        </div>
                                     </div>
                               </a>
-                           </li>
+                           </li>';
+                   }
+                   }
+                   ?>
+                        
                   <li>
                      <hr style = "border: 1px solid antiquewhite; border-radius: 2px; width: auto;">
                   </li>
                </ul>
             </div>
+<!--------------------------------------------------------------------------------------------------------------->
+             
             <div class="col" style="background-color: #f9f9f9; border-left: 2px solid #bfd8e4">
-               <div class=user_post>
-                  <textarea class="form-control" rows="1" id="post" placeholder="Post a message" style="height: 3em; border: 1px solid #46B1FC;"></textarea>
-                  <div class = "post_buttons" style="float: right">
-                     <button type="button" class="btn btn-secondary btn-md dropdown-toggle" data-toggle="dropdown">
-                     <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                     </button>
-                     <ul class="dropdown-menu" role="menu">
-                        <div style="margin-left: 1em;">
-                           <li><a href="#">Picture</a></li>
-                           <li><a href="#">Video</a></li>
-                           <li><a href="#">File</a></li>
-                        </div>
-                     </ul>
-                     <button type="submit" class="btn btn-primary btn-md">
-                     Post
-                     </button>
-                  </div>
+                
+<!-----------------------------------------user post-------------------------------------------------------------->
+           <div class=user_post>
+               <form method="get" action="addpost.php" id="adding_post">
+               <textarea name="pt" class="form-control" rows="2" id="post1" placeholder="Post a message" style="border: 1px solid #46B1FC;"></textarea>
+               <div class="form-group" id="attachment_div">
                </div>
-               <div class="group_posts_holder">
-                  <div style="margin-top: 1em;">
-                     <div class="row">
-                        <div class="col-sm-1">
-                           <img src="../images/letter.png" alt="logo" height = 45px class="rounded-circle group_friend_icon">
-                        </div>
-                        <div class="col" style="margin-left:3em;">
-                           <div class="row">
-                              <div class="col-sm-0">
-                                 <strong>Zbrm</strong>
-                              </div>
-                              <div class="col post_timestamp">
-                                 6/1/19 7:55 AM
-                              </div>
-                           </div>
-                           <div class="row">
-                              <p class="group_post_font">Watched Ben 10 last night. Was awesome. Big Chill is best alien.</p>
-                           </div>
-                           <div class="row post_options">
-                              <div class="col-sm-0.5">
-                                 <a href="#reply" data-toggle="collapse">Reply</a>
-                                 <div id="reply" class="collapse">
-                                    <textarea class="form-control" rows="1" id="post" style="width:30em; height:2em; margin-top:0.2em"></textarea>
-                                    <div class = "post_buttons">
-                                         <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                            <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                               <div style="margin-left: 1em;">
-                                                  <li><a href="#">Picture</a></li>
-                                                  <li><a href="#">Video</a></li>
-                                                  <li><a href="#">File</a></li>
-                                               </div>
-                                            </ul>
-                                       <button type="submit" class="btn btn-primary btn-sm">
-                                       Post
-                                       </button>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col">
-                                 <a href="#comments" data-toggle="collapse">View comments</a>
-                                 <div id="comments" class="collapse">
-                                    <div class="row">
-                                       <div class="col-sm-1">
-                                          <img src="../images/friend_pics/zambino.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
-                                       </div>
-                                       <div class="col" style="margin-left: 4em">
-                                          <div class="row">
-                                             <div class="col-sm-0">
-                                                <strong>Zambino</strong>
-                                             </div>
-                                             <div class="col post_timestamp">
-                                                6/1/19 10:56 AM
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <p class="group_post_font">Dude get a life</p>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                       <div class="col-sm-1">
-                                          <img src="../images/friend_pics/orton.jpg"" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
-                                       </div>
-                                       <div class="col" style="margin-left: 4em">
-                                          <div class="row">
-                                             <div class="col-sm-0">
-                                                <strong>Randy Orton</strong>
-                                             </div>
-                                             <div class="col post_timestamp">
-                                                6/1/19 11:09 AM
-                                             </div>
-                                          </div>
-                                          <div class="row">
-                                             <p class="group_post_font">Hahaha you're so lame. Heatblast is sooo much cooler</p>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <hr style="background-color: #d0e2eb">
-                  </div>
-                  <div>
-                     <div class="row">
-                        <div class="col-sm-1">
-                           <img src="../images//friend_pics/zambino.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
-                        </div>
-                        <div class="col" style="margin-left:2em;">
-                           <div class="row">
-                              <div class="col-sm-0">
-                                 <strong>Zambino</strong>
-                              </div>
-                              <div class="col post_timestamp">
-                                 6/1/19 1:30 PM
-                              </div>
-                           </div>
-                           <div class="row">
-                              <p class="group_post_font">Check out this wallpaper</p>
-                           </div>
-                           <div class="row">
-                              <img src="../images/posts/ben10_wallpaper.jpg">
-                           </div>
-                           <div class="row post_options">
-                                 <div class="col-sm-0.5">
-                                    <a href="#reply" data-toggle="collapse">Reply</a>
-                                    <div id="reply" class="collapse">
-                                       <textarea class="form-control" rows="1" id="post" style="width:18em; height:2em; margin-top:0.2em"></textarea>
-                                       <div class = "post_buttons">
-                                            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                               <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                               </button>
-                                               <ul class="dropdown-menu" role="menu">
-                                                  <div style="margin-left: 1em;">
-                                                     <li><a href="#">Picture</a></li>
-                                                     <li><a href="#">Video</a></li>
-                                                     <li><a href="#">File</a></li>
-                                                  </div>
-                                               </ul>
-                                          <button type="submit" class="btn btn-primary btn-sm">
-                                          Post
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col">
-                                    <a href="#" data-toggle="collapse">View comments</a>
-                               
-                                 </div>
-                              </div>
-                        </div>
-                     </div>
-                     <hr style="background-color: #d0e2eb">
-                  </div>
-                  <div>
-                     <div class="row">
-                        <div class="col-sm-1">
-                           <img src="../images/friend_pics/gandhi.jpg" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
-                        </div>
-                        <div class="col" style="margin-left:4em;">
-                           <div class="row">
-                              <div class="col-sm-0">
-                                 <strong>Mahatma Gandhi</strong>
-                              </div>
-                              <div class="col post_timestamp">
-                                 6/1/19 11:55 PM
-                              </div>
-                           </div>
-                           <div class="row">
-                              <p class="group_post_font">Dudes this so awesommmeee :O :)</p>
-                           </div>
-                           <div class="row">
-                              <iframe width="420" height="315"
-                                 src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                              </iframe>
-                           </div>
-                           <div class="row post_options">
-                                 <div class="col-sm-0.5">
-                                    <a href="#reply" data-toggle="collapse">Reply</a>
-                                    <div id="reply" class="collapse">
-                                       <textarea class="form-control" rows="1" id="post" style="width:18em; height:2em; margin-top:0.2em"></textarea>
-                                       <div class = "post_buttons">
-                                            <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                               <span id="search_concept">Add attachment</span> <span class="caret"></span>
-                                               </button>
-                                               <ul class="dropdown-menu" role="menu">
-                                                  <div style="margin-left: 1em;">
-                                                     <li><a href="#">Picture</a></li>
-                                                     <li><a href="#">Video</a></li>
-                                                     <li><a href="#">File</a></li>
-                                                  </div>
-                                               </ul>
-                                          <button type="submit" class="btn btn-primary btn-sm">
-                                          Post
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col">
-                                    <a href="#" data-toggle="collapse">View comments</a>
-                               
-                                 </div>
-                              </div>
-                        </div>
-                     </div>
-                     <hr style="background-color: #d0e2eb">
-                  </div>
+                   <div class="post_buttons">
+                    <div class="form-group" style="display: inline-block;">
+                        <label>Type</label>
+                        <select name="aid" class="form-control" id="post_attachment_type" onchange="attachment(this.value)">
+                            <option value=""></option>
+                            <option value="html">html/txt</option>
+                            <option value="pic">Picture</option>
+                            <option value="vid">Video</option>
+                            <option value="audio">Audio</option>
+                            <option value="file">pdf, xml, zip, exe, etc</option>
+                        </select>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-md">Post</button>
+                    </div>
+                   <script>
+                       var group_name = document.getElementById('group_name').innerHTML;
+                       var uid = 1;
+                        <?php
+                        if(isset($_SESSION['uid'])){
+                            echo "uid = {$_SESSION['uid']};";
+                        }
+                        ?>
+                       $("#adding_post").append("<input value='<?php echo $_GET['gn'];?>' name='gn' hidden>");
+                       $("#adding_post").append("<input value='"+uid+"' name='uid' hidden>");
+                   </script>
+                   </form>
                </div>
-               <br>
+<!---------------------------------------------------------------------------------------------------------------->
+                
+                <script type="text/javascript" src="js/jquery-1.3.2.js" ></script>
+                <script>
+                    $('document').ready(function(){
+                        scrollalert();
+                    });
+                    
+                    function attachment(str){
+                        var div = document.getElementById("attachment_div");
+                        div.innerHTML = '';
+                        switch(str){
+                            case "pic":
+                                div.innerHTML = '<input type="file" class="form-control-file border" accept="image/*"> id="post_attachment"';
+                                break;
+                                
+                            case "html":
+                                div.innerHTML = '<input type="file" class="form-control-file border" accept="text/*"> id="post_attachment"';
+                                break;
+                            
+                            case "vid":
+                                div.innerHTML = '<input type="file" class="form-control-file border" accept="video/*"> id="post_attachment"';
+                                break;
+                                
+                            case "audio":
+                                div.innerHTML = '<input type="file" class="form-control-file border" accept="audio/*"> id="post_attachment"';
+                                break;
+                            
+                            case "file":
+                                div.innerHTML = '<input type="file" class="form-control-file border" accept="application/*"> id="post_attachment"';
+                                break;
+                        }
+                        
+                    }
+                    
+                    function scrollalert(){
+                        var scrolltop = $('#scrollbox').attr('scrollTop');
+                        var scrollheight = $('#scrollbox').attr('scrollHeight');
+                        var windowheight = $('#scrollbox').attr('clientHeight');
+                        var total_posts = $('#scrollbox div[id=content]').length;
+                        var group_name = document.getElementById('group_name').innerHTML;
+                        var scrolloffset = 20;
+                        if(scrolltop >= (scrollheight - (windowheight + scrolloffset))){
+                            $.get(('new-items.php?tp=' + total_posts +'&gn=' + group_name), '', function(newitems){
+                                $('#scrollbox').append(newitems);
+                            });
+                        }
+                        setTimeout('scrollalert();', 1000);
+                    }
+                    
+                </script>
+                
+               <hr style="background-color: #d0e2eb">  
+               <div class="group_posts_holder" style="overflow-y: scroll; height: 460px;" id="scrollbox">
+                   
+               </div>
+               <br> 
                <br>
             </div>
-            <div class="col-sm-0.5" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4;">
-               <ul class="nav flex-column px-0 py-2">
+             
+<!----------------------------------------------left description box----------------------------------------------> 
+             <?php
+             require_once dirname(__DIR__) . "/controllers/group.php";
+             if(isset($_GET['gn'])){
+                 $gc = new GroupController(); 
+                 $group = $gc->get_group_data($_GET['gn']);
                  
-                  <h4 style="align-self: center; font-size: 18px; color: black; margin-top: 1em"><strong> <i>#Groups for you</i></strong></h4>
-
-                     <li class="nav-item">
-                           <a class="nav-link" href="#">
-                           <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px">
-                                 <div class="col-sm-1">
-                                       <img src = "../images/group_icons/code.png" height = 30px width = 30px class="rounded">
-                                 </div>
-                                 <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" style="margin-left:0.5em"><h5>Degenerate Coders</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                          <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                          <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                       </div>
-                                 </div>
-                              </div>
-                              </a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href="#">
-                        <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px">
-                              <div class="col-sm-1">
-                                    <img src = "../images/group_icons/biryani.jpg" height = 30px width = 30px class="rounded">
-                              </div>
-                              <div class="col" >
-                                 <div class="row group_label">
-                                       <div class="col" style="margin-left:0.5em"><h5>Biryani Conniseurs</h5></div>
-                                 </div>
-                                 <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                       <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                       <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                    </div>
-                              </div>
-                           </div>
-                  </a>
-               </li>
-               <li class="nav-item">
-                     <a class="nav-link" href="#">
-                           <div class="row" style="border-top: 2px solid #73aac4; border-bottom: 2px solid #73aac4; padding-top: 3px;">
-                                 <div class="col-sm-1">
-                                       <img src = "../images/group_icons/gamer.png" height = 30px width = 30px class="rounded">
-                                 </div>
-                                 <div class="col" >
-                                    <div class="row group_label">
-                                          <div class="col" style="margin-left:0.5em"><h5>Gamer Nation</h5></div>
-                                    </div>
-                                    <div class="row" style="margin-top: -1em; margin-left: 1.4em">
-                                          <h5><object type="image/svg+xml" data="../images/svg/info.svg" height = 14px  width = 14px></object></h5>
-                                          <h5><object type="image/svg+xml" data="../images/svg/add.svg" height = 12px  width = 12px style="margin-left:0.4em"></object></h5>
-                                       </div>
-                                 </div>
-                              </div>
-                     </a>
-               </li>
-               </ul>
-            </div>
+                 echo '<div class="col" style="background-color: #eef7fe; border-left: 2px solid #bfd8e4; border-right: 2px solid #bfd8e4; -ms-flex: 0 0 230px;  flex: 0 0 230px;">
+            <div class ="group_info">
+                  <div class="row">
+                     <div class="col" >
+                        <h5><strong>'.$_GET['gn'].'</strong></h5>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col">
+                        <p>'.$group['description'].'</p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Members: <strong>5</strong></div>
+                  </div>
+                  <div class="row">
+                     <div class="col" style="color: #17729d">Moderator(s):</div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-1"><img src="../images/friend_pics/sigma.jpg" alt="logo" height = 18px width = 18px class="rounded-circle"></div>
+                     <div class="col" style="color: #17729d">Sigma
+                     </div>
+                  </div>
+                  <div class="row"  style="margin-top:0.5em">
+                     <div class="col-sm-5" style="margin-top:0.5em">
+                        <button class="button joined">Joined</button>
+                     </div>
+                     <div class="col-sm-2">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="../images/svg/notification.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                     <div class="col">
+                        <a class="nav-link" href="#">
+                        <object type="image/svg+xml" data="../images/svg/message_group.svg" height = 18px  width = 18px></object>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>';
+                 }
+             ?>
+<!---------------------------------------------------------------------------------------------------------------->
          </div>
       </div>
    </body>
