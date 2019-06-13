@@ -49,7 +49,8 @@ class ChatController
         return $this->chat->insert([
             'senderId' => $sid,
             'receiverId' => $rid,
-            'aId' => $aid
+            'aId' => $aid,
+            'message' => $message
         ]);
     }
     /**
@@ -65,17 +66,16 @@ class ChatController
         $l_id = $this->user->get_uid_by_username($l_user);
         $r_id = $this->user->get_uid_by_username($r_user);
         foreach ($messages as $message) {
-            if ($message['senderId'] == $l_id || $message['receiverId'] == $l_id || $message['senderId'] == $r_id || $message['receiverId'] == $r_id) {
+            if (($message['senderId'] == $l_id && $message['receiverId'] == $r_id) || ($message['senderId'] == $r_id && $message['receiverId'] == $l_id)) {
                 if($start != null){
-                    if ($message['timestamp'] >= $start){
+                    if ($message['timestamp'] > $start){
                         $selected_messages[]=$message;
-                    }
-                    
+                    }    
                 }
                 else{
-                    $selected_messages = $messages;
+                    $selected_messages[] = $message;
                 }
-             }
+            }
         }
         return $selected_messages;
     }
