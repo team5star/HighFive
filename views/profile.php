@@ -35,8 +35,8 @@ if (isset($username) && $user->username_exists($username)) {
         }
 
         .emp-profile {
-            padding: 3%;
-            margin-top: 6%;
+            padding: 4%;
+            margin-top: 5%;
             margin-bottom: 3%;
             border-radius: 0.5rem;
             background: #fff;
