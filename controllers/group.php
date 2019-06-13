@@ -6,9 +6,12 @@ require_once __DIR__ . "/../models/post.php";
 require_once __DIR__ . "/../models/comment.php";
 require_once __DIR__ . "/../models/user.php";
 require_once __DIR__ . "/../models/attachment.php";
+require_once __DIR__ . "/../models/userinfo.php";
+
 /**
  * Controller for the Different Groups
  */
+
 class GroupController{
     
     private $group = null;
@@ -16,6 +19,7 @@ class GroupController{
     private $post = null;
     private $comment = null;
     private $user = null;
+    private $user_info = null;
     private $attachment = null;
     
     /*
@@ -28,20 +32,8 @@ class GroupController{
         $this->post = new Post();
         $this->comment = new Comment();
         $this->user = new User();
+        $this->user_info = new UserInfo();
         $this->attachment = new Attachment();
-    }
-    
-    /*
-     * Get User id through username
-     * @param String username
-     */
-    
-    function get_uid($username){
-        foreach($this->user->select_all() as $users){
-            if(users["username"] == $username){
-                return $users["uid"];
-            }
-        }return null;
     }
     
     /*
@@ -51,8 +43,8 @@ class GroupController{
     
     function get_gid($group_name){
         foreach($this->group->select_all() as $groups){
-            if(groups["group_name"] == $group_name){
-                return groups["group_name"];
+            if($groups["group_name"] == $group_name){
+                return $groups["gid"];
             }
         }return null;
     }
@@ -63,11 +55,15 @@ class GroupController{
      */
     
     function get_aid($path){
-        foreach($this->group->select_all() as $aids){
-            if(aids["path"] == $path){
-                return aids["aid"];
+        foreach($this->attachment->select_all() as $aids){
+            if($aids["path"] == $path){
+                return $aids["aid"];
             }
-        }return null;
+        }return 0;
+    }
+    
+    function get_attachment_data($aid){
+        return $this->attachment->select_by_id($aid);
     }
 
     /*
@@ -94,7 +90,7 @@ class GroupController{
 
         if($created){
             return $this->group_member->insert(["gid" => $this->get_gid($group_name),
-                                     "uid" => $this->get_uid($username),
+                                     "uid" => $this->user->get_uid_by_username($username),
                                      "role" => "admin"]);
         }
         return false;
@@ -109,9 +105,9 @@ class GroupController{
      * @param String content,    The content of the text message. Nullable.
      */
 
-    function create_post($group_name, $username, $path, $content){
+    function create_post($group_name, $uid, $path, $content){
         return $this->post->insert(["gid" => $this->get_gid($group_name),
-                                    "uid" => $this->get_uid($username),
+                                    "uid" => $uid,
                                     "aid" => $this->get_aid($path),
                                     "content" => $content]);
     }
@@ -126,7 +122,7 @@ class GroupController{
      */
     
     function create_comment($username, $pid, $parent_comid, $comment){
-        return $this->comment->insert(["uid" => $this->get_gid($group_name),
+        return $this->comment->insert(["uid" => $this->user->get_uid_by_username($username),
                                        "pid" => $pid,
                                        "parent_comid" => $parent_comid,
                                        "comment" =>$comment]);
@@ -176,11 +172,11 @@ class GroupController{
     
     function ban_user($group_name, $username){
         $gid = $this->get_gid($group_name);
-        $uid = $this->get_uid($username);
+        $uid = $this->user->get_uid_by_username($username);
         $group = $this->group->select_by_id($gid);
         $group["banned_users"] .= ",$uid";
         $this->remove_member($group_name, $username);
-        return $this->group->update(["banned_users" => $banned_users]);
+        return $this->group->update(["banned_users" => $group['banned_users']], $gid);
     }
 
     /*
@@ -191,7 +187,7 @@ class GroupController{
      */
     
     function change_role($username, $new_role){
-        return $this->group->update(["role" => $new_role], $this->get_uid($username));
+        return $this->group->update(["role" => $new_role], $this->user->get_uid_by_username($username));
     }
     
     /*
@@ -203,7 +199,7 @@ class GroupController{
 
     function add_members($group_name, $username){
         return $this->group_member->insert(["gid" => $this->get_gid($group_name),
-                                     "uid" => $this->get_uid($username),
+                                     "uid" => $this->user->get_uid_by_username($username),
                                      "role" => "member"]);
     }
     
@@ -215,8 +211,8 @@ class GroupController{
      */
 
     function remove_member($group_name, $username){
-        foreach($this->group_member->select_all() as $members){
-            if($member["gid"] == $this->get_gid($group_name) and $member["uid"] == $this->get_uid($username)){
+        foreach($this->group_member->select_all() as $member){
+            if($member["gid"] == $this->get_gid($group_name) and $member["uid"] == $this->user->get_uid_by_username($username)){
                 return $this->group_member->delete($member["gmid"]);
             }
         }
@@ -230,16 +226,27 @@ class GroupController{
      * @return Associative array. Keys are the columns of the table.
      */
     
-    function get_joined_groups($username){
+    function get_joined_members($group_name){
+        $members = array();
+        $gid = $this->get_gid($group_name);
+        foreach($this->group_member->select_all() as $member){
+            if($member["gid"] == $gid){
+                $members[] = $this->user->select_by_id($member["uid"]);
+            }
+        }
+        return $members;
+    }
+    
+    function get_joined_groups($uid){
         $groups = array();
-        foreach($this->group_members->select_all() as $group){
-            if($group["uid"] == $this->get_uid($username)){
+        foreach($this->group_member->select_all() as $group){
+            if($group["uid"] == $uid){
                 $groups[] = $this->group->select_by_id($group["gid"]);
             }
         }
         return $groups;
     }
-
+    
     /*
      * Used to delete a group.
      *
@@ -250,7 +257,7 @@ class GroupController{
         return $this->group->delete($this->get_gid($group_name));
     }
     
-    
+
     /*
      * Used to search a group. Does not show groups the user is banned from.
      *
@@ -260,7 +267,7 @@ class GroupController{
      */
     
     function search_group($username, $group_searched){
-        $uid = $this->get_uid($username);
+        $uid = $this->user->get_uid_by_username($username);
         $groups = array();
         
         foreach($this->group->select_all() as $group){
@@ -279,6 +286,98 @@ class GroupController{
             }
         }
         return $groups;
+    }
+
+    /*
+     * Used to change group category.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String category,         category of the group
+     */
+    
+    function change_category($group_name, $category){
+        $gid = $this->get_gid($group_name);
+        return $this->group->update(["category" => $category],$gid);
+    }
+
+    /*
+     * Used to change group description.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String description,      description of the group
+     */
+
+    function change_description($group_name, $description){
+        $gid = $this->get_gid($group_name);
+        return $this->group->update(["description" => $description], $gid);
+    }
+
+    /*
+     * Used to change group visibility.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String visibility,       visibility of the group
+     */
+    
+    function change_visibility($group_name, $visibility){
+        $gid = $this->get_gid($group_name);
+        return $this->group->update(["visibility" => $visibility],$gid);
+    }
+    
+    /*
+     * Used to change group profile_pic.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String profile_pic,      profile_pic of the group
+     */
+    
+    function change_profile_pic($group_name, $profile){
+        $gid = $this->get_gid($group_name);
+        return $this->group->update(["profile" => $profile],$gid);
+    }
+    
+    /*
+     * Used to change group age_estrict.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String age_estrict,      age_estrict of the group
+     */
+    
+    function change_age_estrict($group_name, $age_restrict){
+        $gid = $this->get_gid($group_name);
+        return $this->group->update(["age_restrict" => $age_restrict],$gid);
+    }
+    
+    /*
+     * Used to unban a user and readd him to the group.
+     *
+     * @param String group_name,       used as an attribute of get_gid to get gid of group.
+     * @param String username,         used as an attribute of get_uid to get uid of user.
+     */
+
+    function unban_user($group_name, $username){
+        $uid = $this->user->get_uid_by_username($username);
+        $gid = $this->get_gid($group_name);
+        $group = $this->group->select_by_id($gid);
+        $banned = array();
+        
+        foreach(explode(",", $group["banned_users"]) as $user){
+            if($user["uid"] != $uid){
+                $banned[] = $user;
+            }
+        }
+        $banned = implode(",", $banned);
+        $this->group->update(["banned_users" => $banned],$gid);
+        
+        return add_members($group_name, $username);
+    }
+    
+    function get_user_info_data($uid){
+        return $this->user_info->select_by_id($uid);
+    }
+    
+    function get_group_data($group_name){
+        return $this->group->select_by_id($this->get_gid($group_name));
     }
 }
 ?>
