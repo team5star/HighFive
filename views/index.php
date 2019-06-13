@@ -78,6 +78,10 @@ if (!isset($_SESSION['uid'])) {
                <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
                <i class="fas fa-cog fa-2x"></i>
             </a>
+            <a class="nav-link" href="logout.php">
+               <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
+               <i class="fas fa-sign-out-alt fa-2x"></i>
+            </a>
             <!-- <a class="nav-link" href="#">
                     <object type="image/svg+xml" data="../images/svg/notifications.svg" height=24px width=24px></object>
                 </a>
@@ -285,7 +289,7 @@ if (!isset($_SESSION['uid'])) {
                      <a class="nav-link" href="#">
                         <table class="group_label">
                            <tr>
-                              <td><img src = "' . $jp['group_profile'] . '" height = 30px width = 30px class="rounded"></td>
+                              <!--<td><img src = "' . $jp['group_profile'] . '" height = 30px width = 30px class="rounded"></td> -->
                               <td>
                                  <h5><a href="index.php?gn=' . $jp['group_name'] . '">' . $jp['group_name'] . '</a></h5>
                               </td>
@@ -303,7 +307,7 @@ if (!isset($_SESSION['uid'])) {
                if (isset($_GET['gn']) && !empty($_GET['gn'])) { ?>
                   <h4 style="align-self: center; font-size: 18px; color: black;">Members</h4>
                   <?php
-                  require_once dirname(__DIR__) . "\controllers\group.php";
+                  require_once dirname(__DIR__) . "/controllers/group.php";
                   $gc = new GroupController();
                   if (isset($_GET['gn'])) {
                      $members = $gc->get_joined_members($_GET['gn']);
@@ -314,9 +318,9 @@ if (!isset($_SESSION['uid'])) {
                               <a class="nav-link" href="profile.php?username=' . $mem['username'] . '">
          
                                  <div class="row">
-                                       <div class="col-sm-1">
+                                       <!-- <div class="col-sm-1">
                                              <img src="' . $u_info['profile_pic'] . '" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                       </div>
+                                       </div> -->
                                        <div class="col" >
                                           <div class="row group_label">
                                                 <div class="col" ><h5>' . $mem['username'] . '</h5></div>
