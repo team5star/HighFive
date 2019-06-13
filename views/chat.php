@@ -383,6 +383,10 @@ $_SESSION['chat_time'] = null;
                     <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
                     <i class="far fa-comment-dots fa-2x"></i>
                 </a>
+                <a class="nav-link" href="settings.php">
+                    <!-- <object type="image/svg+xml" data="../images/svg/messages.svg" height=24px width=24px></object> -->
+                    <i class="fas fa-cog fa-2x"></i>
+                </a>
                 <!-- <a class="nav-link" href="#">
                     <object type="image/svg+xml" data="../images/svg/notifications.svg" height=24px width=24px></object>
                 </a>
