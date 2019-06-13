@@ -151,8 +151,9 @@ $("#signup_modal").modal('show');
                <div class="card-wrapper" style="width: 20em">
                   
                   <!--Group logo-->
-                  <div class="logo">
-                     <img src="Pictures/logo/logo.png" alt="logo" height = 90px class="rounded-circle" >
+                  <div class="logo text-center">
+                     
+                     <img src="../images/logo.png" alt="logo" height = 90px class="rounded-circle" >
                   </div>
                   
                   <div class="card fat">
@@ -174,11 +175,11 @@ $("#signup_modal").modal('show');
                               <label for="password">Password</label>
                               <input id="password" type="password" class="form-control" name="password" required data-eye>
                            </div>
-                           <div class="form-group">
+                           <!-- <div class="form-group">
                               <div class="custom-checkbox custom-control">
                                  <input type="checkbox" name="remember" id="remember" class="custom-control-input">
                                  <label for="remember" class="custom-control-label">Remember Me</label>
-                              </div>
+                              </div> -->
                            </div>
                            <div class="form-group">
                               <button type="submit" class="btn btn-primary btn-block" name="login" style="background-color: #46B1FC"> Login </button>
@@ -190,9 +191,9 @@ $("#signup_modal").modal('show');
                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#signup_modal" >
                            Sign Up
                            </button>
-                           <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#forgotpass_modal">
+                           <!-- <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#forgotpass_modal">
                            Forgot Password?
-                           </button>
+                           </button> -->
                         </div>
                         
                         <!--Pop up form gor user to sign up-->
