@@ -1,6 +1,103 @@
+<?php
+session_start();
+require_once __DIR__ . "/../controllers/user.php";
+require_once __DIR__ . "/../controllers/group.php";
+if(!isset($_SESSION['uid']))
+{
+ header('location:login.php');
+} else {
+   $user = new User();
+   $userc = new UserController();
+   $user = $user->select_by_id($_SESSION['uid']);
+   $_SESSION['email'] = $user['email'];
+   $_SESSION['username'] = $user['username'];
+   unset($user);
+}
+$uid = $_SESSION['uid'];
+if(isset($_POST['change_names'])){
+update_names();
+}
+if(isset($_POST['change_cities'])){
+    update_cities();
+}
+if(isset($_POST['change_occupation'])){
+    update_occupation();
+}
+if(isset($_POST['change_about'])){
+    update_about();
+}
+
+function update_names(){
+$userc = new UserController();
+$uid = $_SESSION['uid'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$userc->update_account_names($first_name,$last_name,$uid);
+
+
+}
+function update_cities(){
+$userc = new UserController();
+$uid = $_SESSION['uid'];
+$current_city = $_POST['current_city'];
+$home_town = $_POST['home_town'];
+$userc->update_account_cities($current_city,$home_town,$uid);
+
+
+}
+function update_occupation(){
+    $userc = new UserController();
+    $uid = $_SESSION['uid'];
+    $occupation = $_POST['occupation'];
+    $userc->update_account_occupation($occupation,$uid);    
+
+}
+function update_about(){
+$userc = new UserController();
+$uid = $_SESSION['uid'];
+$about = $_POST['about'];
+$userc->update_account_about($about,$uid);
+
+}
+function adding_values(){
+$userc = new UserController();
+$uid = $_SESSION['uid'];
+$first_name = $userc->get_first_name_by_uid($uid);
+$last_name = $userc->get_last_name_by_uid($uid);
+$current_city = $userc->get_current_city_by_uid($uid);
+$home_town = $userc->get_home_town_by_uid($uid);
+$occupation = $userc->get_occupation_by_uid($uid);
+$about= $userc->get_about_by_uid($uid);
+echo"<script>
+$(document).ready(function(){
+    $('#FirstName').val('<?php
+    echo $first_name;?>');
+    $('#LastName').val('<?php echo$last_name;?>');
+    $('#CurrentCity').val('<?php echo $current_city;?>');
+    $('#HomeTown').val('<?php echo $home_town; ?>');
+    $('#Occupation').val('<?php echo $occupation; ?>');
+    $('#About').val('<?php echo $about;?>');
+
+});
+</script>";
+}
+adding_values();
+?>
+
 <!DOCTYpe html>
 <html>
     <head>
+        <!-- <script>
+            $(document).ready(function(){
+                $('#FirstName').val($first_name);
+                $('#LastName').val($last_name);
+                $('#CurrentCity').val($current_city);
+                $('#HomeTown').val($home_town;
+                $('#Occupation').val($occupation);
+                $('#About').val($about);
+            
+            });
+        </script> -->
         <title>Settings</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,7 +175,7 @@
                     <!-------------------------------PERSONAL INFO----------------------------->
                     <div id="info">
                         <h3>Personal Info</h3>
-                        <form method="post" action="#" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             
                         <h4>Profile Picture</h4>
                         <div class="circle">
@@ -122,10 +219,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;Name:&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="First Name" name="first_name"/>
-                                <input type="text" class="form-control" placeholder="Last Name" name="last_name"/>
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name" id="FirstName"/>
+                                <input type="text" class="form-control" placeholder="Last Name" name="last_name" id="LastName"/>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary">Change</button>
+                                    <button class="btn btn-primary" name="change_names" type="submit">Change</button>
                                 </div>
                             </div>
 
@@ -133,10 +230,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">&nbsp;&nbsp;Address:&nbsp;&nbsp;&nbsp;</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Current City" name="current_city"/>
-                                <input type="text" class="form-control" placeholder="Home Town" name="home_town"/>
+                                <input type="text" class="form-control" placeholder="Current City" name="current_city" id="CurrentCity"/>
+                                <input type="text" class="form-control" placeholder="Home Town" name="home_town" id="HomeTown"/>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary">Change</button>
+                                    <button class="btn btn-primary" name="change_cities" type="submit">Change</button>
                                 </div>
                             </div>
 
@@ -144,9 +241,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Occupation:</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Occupation" name="occupation"/>
+                                    <input type="text" class="form-control" placeholder="Occupation" name="occupation" id="Occupation"/>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary">Change</button>
+                                        <button class="btn btn-primary" name="change_occupation" type="submit">Change</button>
                                     </div>
                                 </div>
 
@@ -154,9 +251,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About:&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </div>
-                                    <textarea type="text" class="form-control" placeholder="about" name="username" rows="1"></textarea>
+                                    <textarea type="text" class="form-control" placeholder="about" name="about" rows="1" id="About"></textarea>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary">Change</button>
+                                        <button class="btn btn-primary" name="change_about" type="submit">Change</button>
                                     </div>
                                 </div>
                         </form>
