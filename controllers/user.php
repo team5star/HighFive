@@ -323,4 +323,179 @@ class UserController
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
+    public function update_account_names($first_name,$last_name,$uid){
+
+        return $this->userinfo->update([
+
+            "firstname"=>$first_name,
+
+            "lastname" => $last_name
+
+        ],$uid);
+
+    }
+
+    public function update_account_cities($current_city,$home_town,$uid){
+
+        return $this->userinfo->update([
+
+            "current_city"=>$current_city,
+
+            "home_town" => $home_town
+
+        ],$uid);
+
+    }
+
+    public function update_account_occupation($occupation,$uid){
+
+        return $this->userinfo->update([
+
+            "occupation" => $occupation
+
+        ],$uid);
+
+    }
+
+    public function update_account_about($about,$uid){
+
+        return $this->userinfo->update([
+
+            "about" => $about
+
+        ],$uid);
+
+    }
+
+    public function get_first_name_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['firstname'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+    }
+
+    public function get_last_name_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['lastname'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+        
+
+        
+
+    }
+
+    public function get_current_city_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['current_city'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+        
+
+    }
+
+    public function get_home_town_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['home_town'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+        
+
+    }
+
+    public function get_occupation_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['occupation'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+        
+
+    }
+
+    public function get_about_by_uid($uid){
+
+        $users = $this->userinfo->select_all();
+
+        foreach ($users as $user) {
+
+            if ($user['uid'] == $uid) {
+
+                return $user['about'];
+
+            }
+
+        }
+
+        return null;
+
+
+
+        
+
+    }
 }
