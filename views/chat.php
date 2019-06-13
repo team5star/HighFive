@@ -68,6 +68,7 @@ $_SESSION['chat_time'] = null;
             });
         }
         var totalMessages = 0;
+
         function fetchNewMessages() {
             $.getJSON("http://localhost/highfive/views/chat.php?username=<?php echo $_GET['username']; ?>&update_messages", (data) => {
                 var curid = <?php echo $user->get_uid_by_username($_SESSION['username']); ?>;
@@ -101,9 +102,13 @@ $_SESSION['chat_time'] = null;
                         </div>`);
                     }
                 });
+                if (data.length > 0) {
+                    var e = $('.msg_card_body');
+                    var height = e[0].scrollHeight;
+                    e.scrollTop(height);
+                }
             });
         }
-
     </script>
     <style>
         body,
@@ -402,9 +407,9 @@ $_SESSION['chat_time'] = null;
         </div>
     </div>
     <script>
-        $(()=>{
+        $(() => {
             fetchNewMessages();
-            setInterval(fetchNewMessages , 2000);
+            setInterval(fetchNewMessages, 2000);
         })
     </script>
 </body>
