@@ -176,7 +176,7 @@ class GroupController{
         $group = $this->group->select_by_id($gid);
         $group["banned_users"] .= ",$uid";
         $this->remove_member($group_name, $username);
-        return $this->group->update(["banned_users" => $banned_users]);
+        return $this->group->update(["banned_users" => $group['banned_users']], $gid);
     }
 
     /*
