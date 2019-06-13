@@ -5,31 +5,61 @@ error_reporting(~0);
 ini_set('display_errors', true);
 require_once __DIR__ . '/../controllers/user.php';
 
-
 if(isset($_SESSION['uid'])){
    header('location:index.php');
 }
 if(isset($_POST['login'])) {
+   
    login();
 }
-$user = new UserController();
+if(isset($_POST['signup'])){
+
+   signup();
+}
+if(isset($_POST['send'])) {
+   echo "yaha send code";
+   send_code();
+}
+if(isset($_POST['rec_code2'])) {
+   
+   if(verify_code()){
+
+      
+   }
+}
+
+
 $error = '';
 function signup(){
-global $user;
+$user = new UserController();
 $username = $_POST['username'];
 $email = $_POST['email'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 $date = $_POST['date'];
 $gender = $_POST['Gender'];
 if(!($user->email_exists($email) && $user->username_exists($username))){
+   // $user->create_account('ali@gmail.com','ali','ali','1998-02-02','Male');
    $user->create_account($email,$username,$password,$date,$gender);
 }
+else{
+   
+   echo "<script> alert ('Username or email already used'); </script>";
+   echo "<script> $(document).ready(function(){
+      $('#signup_modal').modal('show'); }); </script>";
+   // $_SESSION['signup_error'] = "Username or email already used";
+   // if(isset($_SESSION['signup_error'])){
+   //    $error_msg = "<div class='signup-modal'>Username or password already used2</div>";
+   //    $script = "<script> $(document).ready(function(){ $('#signup_modal').modal('show'); }); </script>";
+      
+      // echo "<div class='alert alert-danger' role='alert'>";
+      // echo $_SESSION['signup_error'];
+   }
 }
 
 function login() {
 $user = new UserController();
 $email = $_POST['email'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 if($user->verify_login_via_email($email,$password)) {
    unset($_SESSION['login_error']);
    $_SESSION['uid'] = $user->get_uid_by_email($email);
@@ -41,7 +71,37 @@ $_SESSION['login_error'] = "Invalid credentials! Can't login.";
 header("Location: login.php");
 }
 }
+
+function send_code(){
+echo "<script> alert ('Username or email already used'); </script>";
+$user = new UserController();
+$email = $_POST['emailrecover'];
+if($email == ''){
+   echo "<script> alert ('Username or email already used'); </script>";
+}
+if($user->email_exists($email)) {
+   $rec_code = $user->generate_recovery_code($email);
+   // the message
+$msg =  " This is srecover code for forget password ". $rec_code.'</br>';
+// mail($email,"Recovery Code",$msg);
+}
+else{
+   //Show error alert on same dialog
+}
+}
+
+function verify_code(){
+   $user = new UserController();
+   $recovery_code = $_POST['rec_code'];
+   $email = $_POST['emailrecover'];
+   
+   if ($user->verify_recovery_code($email, $recovery_code)){
+
+   }
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -53,8 +113,37 @@ header("Location: login.php");
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
       <link href="High_Five_Design.css" rel="stylesheet">
    </head>
+   <script>
+
+
+/* jquery.validate plagin added using cdn. Go to jqueryvalidation.org to see what methods are provided */
+/* Create custom validation method */
+// $.validator.addMethod("startWithA", function(value, element) {
+// 	return /^A/.test(value);
+// }, "Field must start with A");
+
+$(document).ready(function(){
+$("button#signup").click(function(){
+$.ajax({
+type: "POST",
+url: "login.php",
+data: $('form.signup_').serialize(),
+success: function(message){
+// $("#feedback").html(message)
+$("#signup_modal").modal('hide');
+},
+error: function(){
+alert("Error");
+$("#signup_modal").modal('show');
+}
+});
+});
+});
+
+</script>
    <body class="login_page" style="background-color: #eef7fe">
       <section class="h-100">
          <div class="container h-100">
@@ -76,7 +165,7 @@ header("Location: login.php");
                        <?php }
                      ?>
                         <!--Main Login MENU-->
-                        <form method="POST">
+                        <form method="POST" action = "login.php">
                            <div class="form-group">
                               <label for="email">E-Mail Address</label>
                               <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -115,7 +204,7 @@ header("Location: login.php");
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                  </div>
                                  <div class="modal-body">
-                                    <form method="POST">
+                                    <form method="POST" class="signup_" name = "signup_">
                                        <div class="form-group">
                                           <label for="username">Username</label>
                                           <input id="username" type="text" class="form-control" name="username" value="" required autofocus>
@@ -141,7 +230,7 @@ header("Location: login.php");
                                           </div>
                                        </div>
                                        <div class="form-group m-0">
-                                          <button type="submit" class="btn btn-primary btn-block" 
+                                          <button type="submit" class="btn btn-primary btn-block" name="signup"
                                              >Sign Up </button>
                                        </div>
                                     </form>
@@ -163,14 +252,22 @@ header("Location: login.php");
                                  </div>
                                  <div class="modal-body">
                                     <div class="form-group m-0">
-                                       <form method="POST">
+                                       <form  method = "POST" action = "" name="rec_password">
                                           <div class="form-group">
                                              <label for="email">Enter e-mail address for password renewal</label>
-                                             <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                                             <input id="emailrecover" type="email" class="form-control" name="emailrecover" value="" required autofocus>
                                           </div>
-                                          <button type="submit" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#recovery_pass_modal"
+                                          <div class="form-group">
+                                          <button type="submit" name="send" id = "send" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#recovery_pass_modal"
                                              data-dismiss="modal">Send request</button>
+                                          </div>
+                                       
                                        </form>
+                                       <?php
+                                       if(isset($_POST['emailrecover'])) {
+   
+                                          send_code();
+                                       } ?>
                                     </div>
                                  </div>
                                  <div class="modal-footer">
@@ -193,9 +290,9 @@ header("Location: login.php");
                                        <form method="POST">
                                           <div class="form-group">
                                              <label for="r-code">Please enter the recovery code you have received</label>
-                                             <input id="r-code" type="text" class="form-control" name="r-code" value="" required autofocus>
+                                             <input id="rec_code" type="text" class="form-control" name="rec_code" value="" required autofocus>
                                           </div>
-                                          <button type="submit" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#new_pass_modal"
+                                          <button type="submit" name="rec_code2" class="btn btn-danger btn-block" data-toggle="modal"  data-target="#new_pass_modal"
                                              data-dismiss="modal">Send request</button>
                                        </form>
                                     </div>
@@ -249,6 +346,8 @@ header("Location: login.php");
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
    </body>
 </html>
 
