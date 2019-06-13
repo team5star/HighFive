@@ -171,7 +171,7 @@ adding_values();
                         <h3>Personal Info</h3>
                         <form method="post" enctype="multipart/form-data">
                             
-                        <h4>Profile Picture</h4>
+                        <!-- <h4>Profile Picture</h4>
                         <div class="circle">
                             <img class="profile-pic" src="#" id="group_pic" align="middle">
                             <i class="fa fa-user fa-5x" id="temp" style="padding: 15px;"></i> 
@@ -180,7 +180,7 @@ adding_values();
                             <button class="upload-button btn btn-primary"><span class="fa fa-camera"></span></button>
                             <input class="file-upload" type="file" accept="image/*"/ name="group_pic">
                             <button type="submit" class="btn btn-primary"><span class="fa fa-cloud-upload"></span></button>
-                        </div>
+                        </div> -->
 
                         <script>
                             $(document).ready(function() {
