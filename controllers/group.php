@@ -211,7 +211,7 @@ class GroupController{
      */
 
     function remove_member($group_name, $username){
-        foreach($this->group_member->select_all() as $members){
+        foreach($this->group_member->select_all() as $member){
             if($member["gid"] == $this->get_gid($group_name) and $member["uid"] == $this->user->get_uid_by_username($username)){
                 return $this->group_member->delete($member["gmid"]);
             }
