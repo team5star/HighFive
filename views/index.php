@@ -318,9 +318,9 @@ if (!isset($_SESSION['uid'])) {
                               <a class="nav-link" href="profile.php?username=' . $mem['username'] . '">
          
                                  <div class="row">
-                                       <!-- <div class="col-sm-1">
-                                             <img src="' . $u_info['profile_pic'] . '" alt="logo" height = 30px width = 30px class="rounded-circle">
-                                       </div> -->
+                                       <div class="col-sm-1">
+                                             <img src="../images/profile_pics/' . $u_info['profile_pic'] . '" alt="logo" height = 30px width = 30px class="rounded-circle">
+                                       </div>
                                        <div class="col" >
                                           <div class="row group_label">
                                                 <div class="col" ><h5>' . $mem['username'] . '</h5></div>

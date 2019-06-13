@@ -70,7 +70,7 @@ function display_posts($flag, $gn){
         
         echo '<div class="row" id="content">
         <div class="col-sm-1">
-           <!-- <img src="'. $profile_pic_p .'" alt="logo" height = 45px class="rounded-circle group_friend_icon"> -->
+           <img src="../images/profile_pics/'. $profile_pic_p .'" alt="logo" height = 45px class="rounded-circle group_friend_icon">
         </div> 
         <div class="col" style="margin-left:3em;">
            <div class="row">
@@ -109,9 +109,9 @@ function display_posts($flag, $gn){
             echo '<!--        view comments       -->
               
                     <div class="row">
-                       <!-- <div class="col-sm-1">
-                          <img src="'. $profile_pic_c .'" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
-                       </div> -->
+                       <div class="col-sm-1">
+                          <img src="../images/profile_pics/'. $profile_pic_c .'" alt="logo" height = 45px width = 45px class="rounded-circle group_friend_icon">
+                       </div>
                        <div class="col" style="margin-left: 4em">
                           <div class="row">
                              <div class="col-sm-0">
